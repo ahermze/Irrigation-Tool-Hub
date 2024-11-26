@@ -1,0 +1,55 @@
+{% extends "base/upload.html" %}
+{% block content %}
+
+<h1 font-size="43px"><b>UPLOAD SUCCESSFUL !</b></h1>
+
+
+<form action="{{url_for('upload_success')}}" , method="POST">
+    <!-- <label for="title">Insert the treatment type (available: SWB_40, SWB_65, SWB_90)</label> -->
+
+    <fieldset>
+        <legend>Select the treatment type:</legend>
+        <div>
+            <input type="radio" id="treatment" name="treatment" value="SWB_40" />
+            <label>SWB_40</label>
+        </div>
+        <div>
+            <input type="radio" id="treatment" name="treatment" value="SWB_65" />
+            <label>SWB_65</label>
+
+        </div>
+        <div>
+            <input type="radio" id="treatment" name="treatment" value="SWB_90" />
+            <label>SWB_90</label>
+
+        </div>
+    </fieldset>
+
+    <br>
+    <!-- <input input type="dropdown" name="treatment" id="treatment" value="{{treatment}}">
+    <select id="dropdown">
+        {% for item in treatment_types %}
+        <option>{{ item }}</option>
+        {% endfor %}
+    </select>
+    </input>
+    <br> -->
+
+
+
+    <label for="title">Insert the start DOY (min: 173)</label>
+    <br>
+    <input input type="text" name="start_DOY" id="start_DOY" value="{{start_DOY}}"></input>
+    <br>
+
+    <label for="title">Insert the end DOY (max: 266)</label>
+    <br>
+    <input input type="text" name="end_DOY" id="end_DOY" value="{{end_DOY}}"></input>
+    <br>
+
+    <button id="sub" type='submit'>Submit</button>
+</form>
+
+
+
+{% endblock %}
