@@ -6,35 +6,35 @@ from flask_bootstrap import Bootstrap
 from werkzeug.utils import secure_filename
 
 
-main = Flask(__name__)
-Bootstrap(main)
-main.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
+app = Flask(__name__)
+Bootstrap(aapp)
+app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
 OUTPUT_DIR = "static"
 upload_dir = "./excel_files/"
-main.config["UPLOAD_FOLDER"] = "./excel_files/"
+app.config["UPLOAD_FOLDER"] = "./excel_files/"
 
 
-@main.route("/")
+@app.route("/")
 def index():
     return render_template("/base/index.html")
 
 
-@main.route("/return_upload")
+@app.route("/return_upload")
 def return_upload():
     return render_template("/base/upload.html")
 
 
-@main.route("/upload")
+@app.route("/upload")
 def upload():
     return render_template("/base/upload.html")
 
 
-@main.route("/profile")
+@app.route("/profile")
 def profile():
     return render_template("/base/profile.html")
 
 
-@main.route("/upload", methods=["POST"])
+@app.route("/upload", methods=["POST"])
 def upload_file():
     global filename_
     if request.method == "POST":
@@ -50,12 +50,12 @@ def upload_file():
             file_ext = os.path.splitext(filename_)[1]
             if file_ext != ".xlsx":
                 abort(400)
-            file.save(os.path.join(main.config['UPLOAD_FOLDER'], filename_))
+            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename_))
 
         return render_template("/base/upload_success.html")
 
 
-@main.route("/upload_success", methods=["GET", "POST"])
+@app.route("/upload_success", methods=["GET", "POST"])
 def upload_success():
     # treatment_types = ['SWB_40', 'SWB_65', 'SWB_90']
     if request.method == "POST":
@@ -74,7 +74,7 @@ def upload_success():
     return render_template("/base/upload_success.html") #, treatment_types=treatment_types)
 
 
-@main.route("/upload_success_2nd", methods=["GET", "POST"])
+@app.route("/upload_success_2nd", methods=["GET", "POST"])
 def upload_success_2nd():
     if request.method == "POST":
         full_name = upload_dir + filename_
@@ -97,4 +97,4 @@ def upload_success_2nd():
 
 
 if __name__ == "__main__":
-    main.run(host="0.0.0.0", port=3000, threaded=False, debug=True)
+    app.run(host="0.0.0.0", port=3000, threaded=False, debug=True)
