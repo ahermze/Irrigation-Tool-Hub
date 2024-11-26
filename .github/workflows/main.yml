@@ -1,0 +1,7 @@
+- name: Activate virtualenv
+  run: |
+    . .venv/bin/activate
+    echo PATH=$PATH >> $GITHUB_ENV
+
+- name: Linters
+  run: pre-commit
