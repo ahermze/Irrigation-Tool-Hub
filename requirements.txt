@@ -4,3 +4,4 @@ pandas
 matplotlib
 flask
 flask_bootstrap
+openpyxl
