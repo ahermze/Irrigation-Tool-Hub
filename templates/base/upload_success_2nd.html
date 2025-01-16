@@ -4,24 +4,64 @@
 <h1 font-size="43px"><b>UPLOAD SUCCESSFUL !</b></h1>
 
 
-<form action="{{url_for('upload_success_2nd')}}", method="POST"> 
+<form id="uploadForm" action="{{url_for('upload_success_2nd')}}" method="POST" class="needs-validation" novalidate> 
     <label for="title">Insert the start hour value (24-hour scale)</label>
     <br>
-    <input input type="text" name="start_hour" id="start_hour" value="{{start_hour}}"></input>
+    <input input type="number" name="start_hour" id="start_hour" value="{{start_hour}}" class="form-control" min="1" max="24" required></input>
+    <div class="invalid-feedback">
+        Provide valid hour
+    </div>
     <br>
 
     <label for="title">Insert the end hour value (24-hour scale)</label>
     <br>
-    <input input type="text" name="end_hour" id="end_hour" value="{{end_hour}}"></input>
+    <input input type="number" name="end_hour" id="end_hour" value="{{end_hour}}" class="form-control" min="1" max="24" required></input>
+    <div class="invalid-feedback">
+        Provide valid hour
+    </div>
     <br>
 
     <label for="title">Insert the select hour for CWSI value (24-hour scale)</label>
     <br>
-    <input input type="text" name="select_hour" id="select_hour" value="{{select_hour}}"></input>
+    <input input type="number" name="select_hour" id="select_hour" value="{{select_hour}}" class="form-control" min="1" max="24" required></input>
+    <div class="invalid-feedback">
+        Provide valid hour
+    </div>
     <br>
-
-    <button id="sub" type='submit'>Submit</button>
+    <div class="formSubmit">
+      <button id="sub" type='submit' class="btn btn-primary">
+        Submit
+      </button>
+      <div id="loadingIndicator" class="loader hidden"></div>
+    </div>
 </form>
+
+
+<script>
+    // Example starter JavaScript for disabling form submissions if there are invalid fields
+    (function() {
+      'use strict';
+      window.addEventListener('load', function() {
+        // Fetch all the forms we want to apply custom Bootstrap validation styles to
+        var forms = document.getElementsByClassName('needs-validation');
+        // Loop over them and prevent submission
+        var validation = Array.prototype.filter.call(forms, function(form) {
+          form.addEventListener('submit', function(event) {
+            if (form.checkValidity() === false) {
+              event.preventDefault();
+              event.stopPropagation();
+            } else {
+              let loadDiv = document.querySelector("#loadingIndicator");
+              let btn = document.querySelector("#sub");
+              loadDiv.classList.remove("hidden");
+              btn.innerText = "Loading..."
+            }
+            form.classList.add('was-validated');
+          }, false);
+        });
+      }, false);
+    })();
+    </script>
 
 
 

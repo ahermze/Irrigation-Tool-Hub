@@ -27,25 +27,33 @@
   {% block content %}
 
 
-  <h1 font-size="43px"><b>FINISH CALCULATION!</b></h1>
+  <h1><b>FINISH CALCULATION!</b></h1>
 
-  <div class="container">
+  <div>
     <div class="row">
-      <div class="column">
-        <h1>CWSI coefficient for selected treatment </h1>
+      <div>
+        <!-- <h1>CWSI coefficient for selected treatment </h1> -->
         <img src="/static/result_2pm_cwsi.png" class="center" width="auto" height="auto">
       </div>
 
-      <div class="column">
-        <h1>Regression plot </h1>
+      <div>
+        <!-- <h1>Regression plot</h1> -->
         <div><img src="/static/ab_plot.png" class="center" width="auto" height="auto">
         </div>
       </div>
 
+    </div>
+    <a href="{{ url_for('upload_success') }}" class="btn btn-info" role="button">Back to insert values</a>
+  </div>
 
-      <button><a href="{{ url_for('upload_success') }}">Back to insert values</a></button>
+  {% endblock %}
 
-      {% endblock %}
+
+  <style>
+    div.container.has-text-centered {
+      max-width: 100%;
+    }
+  </style>
 </body>
 
 </html>
