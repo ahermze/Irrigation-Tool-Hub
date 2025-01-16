@@ -1,0 +1,86 @@
+body {
+    background-color:rgb(208, 255, 206);
+    background-position: center;
+    background-size: cover;
+
+    font-family: 'Courier New', Courier, monospace;
+}
+
+h1 {
+    color: rgb(0, 0, 0);
+    text-align: center;
+    font-size: 50px;
+    font-family: 'Times New Roman', Courier, monospace;
+}
+
+p {
+    font-family: verdana;
+    font-size: 20px;
+}
+
+div#content {
+    background-color: rgb(206, 43, 43);
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 1em 2em;
+}
+
+div.card-table {
+    overflow:scroll;
+    max-height: 90vh;
+}
+
+div.hidden {
+    display:none;
+}
+
+.hero-head {
+    margin-bottom: 1.5em;
+}
+
+.loader {
+    border: 6px solid #f3f3f3;
+    border-top: 6px solid #3498db;
+    border-radius: 50%;
+    width: 38px;
+    height: 38px;
+    animation: spin 2s linear infinite;
+    display: inline-block;
+}  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+
+  .formSubmit {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 0.5em;
+}
+
+.wrapper > * {
+    grid-column: col-start / span 6;
+}
+
+.row img {
+    max-width: 100%;
+}
+
+.row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1em;
+    align-items: center;
+    justify-items: center;
+}
+
+@media (max-width: 500px) {
+    .row {
+        grid-template-columns: 1fr;
+    }
+
+    h1, h2 {
+        font-size: 1.3rem;
+    }
+}
