@@ -13,7 +13,31 @@
                 <input type="submit" value="Upload" , class="button is-block is-info is-large is-fullwidth">
             </div>
         </form>
+        <p></p>
+        <p>The Radius: <span id="circleradius"></span></p>
+        <p>The Latitude: <span id="thelat"></span></p>
+        <p>The Longitude: <span id="thelng"></span></p>
+
     </div>
 </div>
+
+<script>
+
+    function getCookieByName(name) {
+        const nameEQ = name + "=";
+        const ca = document.cookie.split(';');
+        for(let i=0; i < ca.length; i++) {
+            let c = ca[i];
+            while (c.charAt(0) == ' ') c = c.substring(1,c.length);
+            if (c.indexOf(nameEQ) == 0) 
+            return c.substring(nameEQ.length,c.length);
+        }
+        return null;
+    }
+    document.getElementById("circleradius").innerHTML = getCookieByName("radius");
+    document.getElementById("thelat").innerHTML = getCookieByName("latitude");
+    document.getElementById("thelng").innerHTML = getCookieByName("longitude");
+
+</script>
 
 {% endblock %}

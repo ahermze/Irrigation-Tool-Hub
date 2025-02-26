@@ -1,8 +1,42 @@
 {% extends "base/base.html" %}
 
 {% block content %}
-<h1 class="title">
-  Home Page
-</h1>
+<head>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    
+   
+    .column {
+      background-color:#ffffff;
+
+      float: none;
+      width: 100%;
+      padding: 1.5em;
+    }
+
+    /* Clearfix (clear floats) */
+    .row::after {
+      content: "";
+      clear: both;
+      display: table;
+    }
+  </style>
+</head>
+
+
+
+<div class="column is-4 is-offset-4">
+  <h1 class="title">Home Page</h1>
+  <div class="box">
+     <p>
+      ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+      </p>
+  </div>
+</div>
 
 {% endblock %}
+
+
