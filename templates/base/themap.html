@@ -10,7 +10,6 @@
 
 
     .column {
-      background-color: #ffffff;
 
       float: none;
       width: 100%;
@@ -19,7 +18,8 @@
     }
 
     #ex1Slider .slider-selection {
-      background: #BABABA;
+      /* background: #BABABA; */
+      background: rgb(255, 255, 255);
     }
 
     /* Clearfix (clear floats) */
@@ -61,7 +61,8 @@
       /* Full-width */
       height: 25px;
       /* Specified height */
-      background: #d3d3d3;
+      /* background: #d3d3d3; */
+      background: white;
       /* Grey background */
       outline: none;
       /* Remove outline */
@@ -87,7 +88,8 @@
       /* Set a specific slider handle width */
       height: 25px;
       /* Slider handle height */
-      background: #04AA6D;
+      /* background: #04AA6D; */
+      background: #424240;
       /* Green background */
       cursor: pointer;
       /* Cursor on hover */
@@ -98,14 +100,34 @@
       /* Set a specific slider handle width */
       height: 25px;
       /* Slider handle height */
-      background: #04AA6D;
+      /* background: #04AA6D; */
+      background: #424240;
+
       /* Green background */
       cursor: pointer;
       /* Cursor on hover */
     }
   </style>
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+
+  <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY" async defer></script>
+  <link
+  rel="stylesheet"
+  href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+  integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+  crossorigin=""
+  />
+
+  <!-- <script
+  src="https://unpkg.com/leaflet@1.7.1/dist/leaflet-src.js"
+  integrity="sha512-I5Hd7FcJ9rZkH7uD01G3AjsuzFy3gqz7HIJvzFZGFt2mrCS4Piw9bYZvCgUE0aiJuiZFYIJIwpbNnDIM6ohTrg=="
+  crossorigin=""
+  ></script>
+  <script src="https://unpkg.com/leaflet.gridlayer.googlemutant@latest/dist/Leaflet.GoogleMutant.js"></script> -->
+
+
+
+  <!-- <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" /> -->
 </head>
 
 
@@ -122,6 +144,15 @@
   <button class="btn btn-primary" id="submit" onclick="setCookie()">Next</button>
   <p></p>
   <div id="map"></div>
+
+  <script
+  src="https://unpkg.com/leaflet@1.7.1/dist/leaflet-src.js"
+  integrity="sha512-I5Hd7FcJ9rZkH7uD01G3AjsuzFy3gqz7HIJvzFZGFt2mrCS4Piw9bYZvCgUE0aiJuiZFYIJIwpbNnDIM6ohTrg=="
+  crossorigin=""
+  ></script>
+  <script src="https://unpkg.com/leaflet.gridlayer.googlemutant@latest/dist/Leaflet.GoogleMutant.js"></script>
+
+
 
 </div>
 
@@ -149,6 +180,11 @@
   L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 19,
     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+  }).addTo(map);
+
+  var satellite = L.gridLayer.googleMutant({
+    maxZoom: 24,
+    type: 'satellite'
   }).addTo(map);
 
   var popup = L.popup();
