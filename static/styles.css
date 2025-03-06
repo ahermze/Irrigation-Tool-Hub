@@ -1,5 +1,8 @@
+
+
+
 body {
-    background-color:rgb(245, 241, 231);
+    background-color:rgb(254, 253, 250);
     /* background-color: #c7c8ca; */
 
     /* background-color: #242423; */
@@ -15,21 +18,22 @@ h1 {
     color: rgb(0, 0, 0);
     text-align: center;
     font-size: 50px;
-    font-family: 'Work Sans', sans-serif;
+    font-family: 'Work Sans', Courier, monospace;
 }
 
 .navbar {
     background-color: rgb(208, 0, 0);
-    border-bottom: 11px outset;
+    border-bottom: 4px outset;
+    /* border-bottom-color: #424240; */
     border-bottom-color: #424240;
 
     /* background-color: #242423; */
-    font-family: 'Work Sans', sans-serif;
+    font-family: 'Work Sans', Courier, monospace;
     /* font-family: 'Arial', Times, serif; */
 }
 
 p {
-    font-family: 'Work Sans';
+    font-family: 'Work Sans', Courier, monospace;
     font-size: 20px;
 }
 
@@ -106,7 +110,7 @@ div.hidden {
   
  
   .column {
-    /* background-color:rgb(245, 241, 231); */
+    background-color:rgb(245, 241, 231);
     /* background-color: #c7c8ca; */
     float: none;
     width: 100%;

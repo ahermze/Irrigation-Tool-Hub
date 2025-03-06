@@ -1,41 +1,42 @@
-{% extends "base/upload.html" %}
-{% block content %}
+  {% extends "base/upload.html" %}
+  {% block content %}
+  <div class="column is-4 is-offset-4">
 
-<h1><b>Upload Successful</b></h1>
+  <h1><b>Upload Successful</b></h1>
 
 
-<form id="uploadForm" action="{{url_for('upload_success_2nd')}}" method="POST" class="needs-validation" novalidate> 
-    <label for="title">Insert the start hour value (24-hour scale)</label>
-    <br>
-    <input input type="number" name="start_hour" id="start_hour" value="{{start_hour}}" class="form-control" min="1" max="24" required></input>
-    <div class="invalid-feedback">
-        Provide valid hour
-    </div>
-    <br>
+  <form id="uploadForm" action="{{url_for('upload_success_2nd')}}" method="POST" class="needs-validation" novalidate> 
+      <label for="title">Insert the start hour value (24-hour scale)</label>
+      <br>
+      <input input type="number" name="start_hour" id="start_hour" value="{{start_hour}}" class="form-control" min="1" max="24" required></input>
+      <div class="invalid-feedback">
+          Provide valid hour
+      </div>
+      <br>
 
-    <label for="title">Insert the end hour value (24-hour scale)</label>
-    <br>
-    <input input type="number" name="end_hour" id="end_hour" value="{{end_hour}}" class="form-control" min="1" max="24" required></input>
-    <div class="invalid-feedback">
-        Provide valid hour
-    </div>
-    <br>
+      <label for="title">Insert the end hour value (24-hour scale)</label>
+      <br>
+      <input input type="number" name="end_hour" id="end_hour" value="{{end_hour}}" class="form-control" min="1" max="24" required></input>
+      <div class="invalid-feedback">
+          Provide valid hour
+      </div>
+      <br>
 
-    <label for="title">Insert the select hour for CWSI value (24-hour scale)</label>
-    <br>
-    <input input type="number" name="select_hour" id="select_hour" value="{{select_hour}}" class="form-control" min="1" max="24" required></input>
-    <div class="invalid-feedback">
-        Provide valid hour
-    </div>
-    <br>
-    <div class="formSubmit">
-      <button id="sub" type='submit' class="btn btn-primary">
-        Submit
-      </button>
-      <div id="loadingIndicator" class="loader hidden"></div>
-    </div>
-</form>
-
+      <label for="title">Insert the select hour for CWSI value (24-hour scale)</label>
+      <br>
+      <input input type="number" name="select_hour" id="select_hour" value="{{select_hour}}" class="form-control" min="1" max="24" required></input>
+      <div class="invalid-feedback">
+          Provide valid hour
+      </div>
+      <br>
+      <div class="formSubmit">
+        <button id="sub" type='submit' class="btn btn-primary">
+          Submit
+        </button>
+        <div id="loadingIndicator" class="loader hidden"></div>
+      </div>
+  </form>
+</div>
 
 <script>
     // Example starter JavaScript for disabling form submissions if there are invalid fields

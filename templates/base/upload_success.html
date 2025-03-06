@@ -1,53 +1,54 @@
 {% extends "base/upload.html" %}
 {% block content %}
 
-<h1><b>Upload Successful</b></h1>
+
+<div class="column is-4 is-offset-4">
+  <h1><b>Upload Successful</b></h1>
+  <form action="{{url_for('upload_success')}}" method="POST" class="needs-validation" novalidate>
+      <!-- <label for="title">Insert the treatment type (available: SWB_40, SWB_65, SWB_90)</label> -->
+
+      <label for="title">Select treatment type</label>
+      <div class="form-check">
+          <input class="form-check-input" type="radio" name="treatment" id="treatment1" value="SWB_40" checked/>
+          <label class="form-check-label" for="treatment1">
+              SWB_40
+          </label>
+      </div>
+      <div class="form-check">
+          <input class="form-check-input" type="radio" name="treatment" id="treatment2" value="SWB_65" />
+          <label class="form-check-label" for="treatment2">
+              SWB_65
+          </label>
+      </div>
+      <div class="form-check">
+          <input class="form-check-input" type="radio" name="treatment" id="treatment3" value="SWB_90" />
+          <label class="form-check-label" for="treatment3">
+              SWB_90
+          </label>
+      </div>
 
 
-<form action="{{url_for('upload_success')}}" method="POST" class="needs-validation" novalidate>
-    <!-- <label for="title">Insert the treatment type (available: SWB_40, SWB_65, SWB_90)</label> -->
+      <br>
 
-    <label for="title">Select treatment type</label>
-    <div class="form-check">
-        <input class="form-check-input" type="radio" name="treatment" id="treatment1" value="SWB_40" checked/>
-        <label class="form-check-label" for="treatment1">
-            SWB_40
-        </label>
-    </div>
-    <div class="form-check">
-        <input class="form-check-input" type="radio" name="treatment" id="treatment2" value="SWB_65" />
-        <label class="form-check-label" for="treatment2">
-            SWB_65
-        </label>
-    </div>
-    <div class="form-check">
-        <input class="form-check-input" type="radio" name="treatment" id="treatment3" value="SWB_90" />
-        <label class="form-check-label" for="treatment3">
-            SWB_90
-        </label>
-    </div>
+      <label for="title">Insert the start DOY (min: 173)</label>
+      <br>
+      <input input type="number" name="start_DOY" id="start_DOY" value="{{start_DOY}}" class="form-control" min="173" max="266" required></input>
+      <div class="invalid-feedback">
+          Provide valid number
+      </div>
+      <br>
 
+      <label for="title">Insert the end DOY (max: 266)</label>
+      <br>
+      <input input type="number" name="end_DOY" id="end_DOY" value="{{end_DOY}}" class="form-control"  min="173" max="266" required></input>
+      <div class="invalid-feedback">
+          Provide valid number
+      </div>
+      <br>
 
-    <br>
-
-    <label for="title">Insert the start DOY (min: 173)</label>
-    <br>
-    <input input type="number" name="start_DOY" id="start_DOY" value="{{start_DOY}}" class="form-control" min="173" max="266" required></input>
-    <div class="invalid-feedback">
-        Provide valid number
-    </div>
-    <br>
-
-    <label for="title">Insert the end DOY (max: 266)</label>
-    <br>
-    <input input type="number" name="end_DOY" id="end_DOY" value="{{end_DOY}}" class="form-control"  min="173" max="266" required></input>
-    <div class="invalid-feedback">
-        Provide valid number
-    </div>
-    <br>
-
-    <button id="sub" type='submit' class="btn btn-primary">Next</button>
-</form>
+      <button id="sub" type='submit' class="btn btn-primary">Next</button>
+  </form>
+</div>
 
 <script>
     // Example starter JavaScript for disabling form submissions if there are invalid fields

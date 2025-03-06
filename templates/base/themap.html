@@ -7,8 +7,6 @@
     * {
       box-sizing: border-box;
     }
-
-
     .column {
 
       float: none;
@@ -35,17 +33,15 @@
     }
 
     #map {
-      float: left;
-      width: 50em;
-      height: 50em;
+      /* float: left; */
+      /* width: 50em;
+      height: 50em; */
+      width: 100%;
+      min-height: 65vh;
       padding: 5px;
       /* width: 70em;
         height: 70em; */
-
-
     }
-
-
 
     .slidecontainer {
       width: 100%;
@@ -109,30 +105,27 @@
     }
   </style>
 
-  <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY" async defer></script>
-  <link
-  rel="stylesheet"
-  href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
-  integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
-  crossorigin=""
-  />
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAIVmJArz1Z9yoxXKOrEl9DFOW1JD4q0RU" async defer></script>
+  
 
-  <!-- <script
-  src="https://unpkg.com/leaflet@1.7.1/dist/leaflet-src.js"
-  integrity="sha512-I5Hd7FcJ9rZkH7uD01G3AjsuzFy3gqz7HIJvzFZGFt2mrCS4Piw9bYZvCgUE0aiJuiZFYIJIwpbNnDIM6ohTrg=="
-  crossorigin=""
-  ></script>
-  <script src="https://unpkg.com/leaflet.gridlayer.googlemutant@latest/dist/Leaflet.GoogleMutant.js"></script> -->
+<link
+	rel="stylesheet"
+	href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+	integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+	crossorigin=""
+/>
+<script
+	src="https://unpkg.com/leaflet@1.7.1/dist/leaflet-src.js"
+	integrity="sha512-I5Hd7FcJ9rZkH7uD01G3AjsuzFy3gqz7HIJvzFZGFt2mrCS4Piw9bYZvCgUE0aiJuiZFYIJIwpbNnDIM6ohTrg=="
+	crossorigin=""
+></script>
 
-
-
-  <!-- <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" /> -->
+  
 </head>
 
 
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-  integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+<!-- <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+  integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script> -->
 
 <div class="column is-4 is-offset-4">
   <h5>Select center of feild on map, then set radius</h5>
@@ -184,7 +177,7 @@
 
   var satellite = L.gridLayer.googleMutant({
     maxZoom: 24,
-    type: 'satellite'
+    type: 'hybrid'
   }).addTo(map);
 
   var popup = L.popup();
