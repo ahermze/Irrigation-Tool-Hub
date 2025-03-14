@@ -11,31 +11,42 @@ body {
     background-position: center;
     background-size: cover;
 
-    font-family: 'Work Sans', Courier, monospace;
-}
+    font-family: Work Sans,"Sans Serif Fallback",sans-serif;
+    font-style: normal;}
 
 h1 {
     color: rgb(0, 0, 0);
     text-align: center;
-    font-size: 50px;
-    font-family: 'Work Sans', Courier, monospace;
-}
+    font-size: 40px;
+    font-family: Work Sans,"Sans Serif Fallback",sans-serif;
+    font-style: normal;}
 
 .navbar {
     background-color: rgb(208, 0, 0);
-    border-bottom: 4px outset;
-    /* border-bottom-color: #424240; */
-    border-bottom-color: #424240;
-
-    /* background-color: #242423; */
-    font-family: 'Work Sans', Courier, monospace;
-    /* font-family: 'Arial', Times, serif; */
+   
+    font-family: Work Sans,"Sans Serif Fallback",sans-serif;
+    font-style: normal;
 }
+
+.navbar-dark .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255, 255, 255)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+  }
+
+
+
+  nav a:hover { font-weight: bold !important; }
+
+
 
 p {
-    font-family: 'Work Sans', Courier, monospace;
-    font-size: 20px;
+    font-family: Work Sans,"Sans Serif Fallback",sans-serif;
+    font-style: normal;    font-size: 20px;
 }
+
+.smalltext {
+    font-size: 16px;
+}
+
 
 div#content {
     background-color: rgb(206, 43, 43);
@@ -60,7 +71,7 @@ div.hidden {
 
 .loader {
     border: 6px solid #f3f3f3;
-    border-top: 6px solid #3498db;
+    border-top: 6px solid rgb(208, 0, 0);;
     border-radius: 50%;
     width: 38px;
     height: 38px;
@@ -110,8 +121,8 @@ div.hidden {
   
  
   .column {
-    background-color:rgb(245, 241, 231);
-    /* background-color: #c7c8ca; */
+    /* background-color:rgb(245, 241, 231); */
+    background-color: #ebebea;
     float: none;
     width: 100%;
     padding: 1.5em;
@@ -123,3 +134,14 @@ div.hidden {
     clear: both;
     display: table;
   }
+
+.btn {
+    background-color:rgb(208, 0, 0);
+    font-weight: bold;
+    font-size: small;
+}
+
+.btn:hover {
+    background-color: rgb(155, 18, 18);
+    
+}
