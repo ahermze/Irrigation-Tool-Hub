@@ -32,15 +32,19 @@ def upload():
 def profile():
     return render_template("/base/profile.html")
 
-@app.route("/moreinfo")
-def moreinfo():
-    return render_template("/base/moreinfo.html")
+@app.route("/both")
+def both():
+    return render_template("/base/both.html")
 
 @app.route("/themap")
 def themap():
     # if request.method == ["POST"]:
 
     return render_template("/base/themap.html")
+
+@app.route("/aftermap")
+def aftermap():
+    return render_template("/base/aftermap.html")
 
 
 @app.route("/upload", methods=["POST"])
@@ -61,26 +65,21 @@ def upload_file():
                 abort(400)
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename_))
 
-        return render_template("/base/upload_success.html")
-
-
-@app.route("/upload_success", methods=["GET", "POST"])
-def upload_success():
-    # treatment_types = ['SWB_40', 'SWB_65', 'SWB_90']
-    if request.method == "POST":
-        full_name = upload_dir + filename_
-        global treatment
-        treatment = request.form["treatment"]
-        global start_DOY
-        start_DOY = request.form["start_DOY"]
-        start_DOY = int(start_DOY)
-        global end_DOY
-        end_DOY = request.form["end_DOY"]
-        end_DOY = int(end_DOY)
-        print("NEXT")
         return render_template("/base/upload_success_2nd.html")
 
-    return render_template("/base/upload_success.html") #, treatment_types=treatment_types)
+
+
+
+# @app.route("/upload_success", methods=["GET", "POST"])
+# def upload_success():
+#     # treatment_types = ['SWB_40', 'SWB_65', 'SWB_90']
+#     if request.method == "POST":
+        
+        
+#         print("NEXT")
+#         return render_template("/base/upload_success_2nd.html")
+
+#     return render_template("/base/upload_success.html") #, treatment_types=treatment_types)
 
 
 @app.route("/upload_success_2nd", methods=["GET", "POST"])
@@ -88,8 +87,16 @@ def upload_success_2nd():
     if request.method == "POST":
         full_name = upload_dir + filename_
         global treatment    
+        treatment = request.form["treatment"]
+
         global start_DOY
+        start_DOY = request.form["start_DOY"]
+        start_DOY = int(start_DOY)
+
         global end_DOY
+        end_DOY = request.form["end_DOY"]
+        end_DOY = int(end_DOY)
+
         start_hour = request.form["start_hour"]
         start_hour = int(start_hour)
         end_hour = request.form["end_hour"]
@@ -102,7 +109,61 @@ def upload_success_2nd():
         )
         return render_template("/base/result.html")
 
-    return render_template("/base/upload_success.html")
+    return render_template("/base/upload_success_2nd.html")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# @app.route("/upload_success", methods=["GET", "POST"])
+# def upload_success():
+#     # treatment_types = ['SWB_40', 'SWB_65', 'SWB_90']
+#     if request.method == "POST":
+#         full_name = upload_dir + filename_
+#         global treatment
+#         treatment = request.form["treatment"]
+#         global start_DOY
+#         start_DOY = request.form["start_DOY"]
+#         start_DOY = int(start_DOY)
+#         global end_DOY
+#         end_DOY = request.form["end_DOY"]
+#         end_DOY = int(end_DOY)
+#         print("NEXT")
+#         return render_template("/base/upload_success_2nd.html")
+
+#     return render_template("/base/upload_success.html") #, treatment_types=treatment_types)
+
+
+# @app.route("/upload_success_2nd", methods=["GET", "POST"])
+# def upload_success_2nd():
+#     if request.method == "POST":
+#         full_name = upload_dir + filename_
+#         global treatment    
+#         global start_DOY
+#         global end_DOY
+#         start_hour = request.form["start_hour"]
+#         start_hour = int(start_hour)
+#         end_hour = request.form["end_hour"]
+#         end_hour = int(end_hour)
+#         select_hour = request.form["select_hour"]
+#         select_hour = int(select_hour)
+#         print("NEXT")
+#         plot_buttons(
+#             full_name, start_DOY, end_DOY, treatment, start_hour, end_hour, select_hour
+#         )
+#         return render_template("/base/result.html")
+
+#     return render_template("/base/upload_success.html")
 
 
 if __name__ == "__main__":

@@ -28,42 +28,83 @@
     <section class="hero is-primary is-fullheight">
         <div class="hero-head">
           <img src="static/UNL_Name_blk_2023.jpg" style="width: 55vw; min-width: 330px; max-width: 200px; padding: 20px;" alt="University of Nerbaska-Lincoln">
-            <!-- <nav class="navbar navbar-expand-lg navbar-light bg-light"> -->
-            <nav class="navbar navbar-expand-lg navbar-dark">
 
-                <a class="navbar-brand" href="{{ url_for('index') }}"><strong>CWSI Irrigation</strong></a>
+
+
+          <nav class="navbar navbar-expand-lg navbar-dark">
+                <a class="navbar-brand" href="{{ url_for('index') }}"><strong>Irrigation Tool Hub</strong></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                   <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNavDropdown">
                   <ul class="navbar-nav">
                     <li class="nav-item active">
-                      <a class="nav-link" href="{{ url_for('index') }}"> Home <span class="sr-only">(current)</span></a>
-                    </li>
-                    <!-- <li class="nav-item">
-                      <a class="nav-link" href="{{ url_for('upload') }}">Upload File (removelater)</a>
-                    </li> -->
-                    <li class="nav-item active">
-                      <a class="nav-link" href="{{ url_for('moreinfo') }}"> More Info </a>
+                      <a class="nav-link" href="{{ url_for('upload') }}"> CWSI <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item active">
-                      <a class="nav-link" href="{{ url_for('themap') }}"> Start Calculation </a>
+                      <a class="nav-link" href="{{ url_for('themap') }}"> WISE </a>
                     </li>
-                    
+                    <li class="nav-item active">
+                      <a class="nav-link" href="{{ url_for('both') }}"> CWSI+WISE </a>
+                    </li>
+                    <li class="nav-item active">
+                      <a class="nav-link" href="{{ url_for('both') }}"> RSCWSI </a>
+                    </li>
+                    <li class="nav-item active">
+                      <a class="nav-link" href="{{ url_for('both') }}"> AquaCrop </a>
+                    </li>
                   </ul>
                 </div>
               </nav>
+
+
+              <!-- <nav class="navbar navbar-expand-lg navbar-dark">
+                <a class="navbar-brand" href="{{ url_for('index') }}"><strong>Irrigation Tool Hub</strong></a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                  <ul class="navbar-nav">
+                    <li class="nav-item active">
+                      <a class="nav-link" href="{{ url_for('upload') }}"> CWSI <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item active">
+                      <a class="nav-link" href="{{ url_for('themap') }}"> WISE </a>
+                    </li>
+                    <li class="nav-item active">
+                      <a class="nav-link" href="{{ url_for('both') }}"> CWSI+WISE </a>
+                    </li>
+                    <li class="nav-item active">
+                      <a class="nav-link" href="{{ url_for('both') }}"> RSCWSI </a>
+                    </li>
+                    <li class="nav-item active">
+                      <a class="nav-link" href="{{ url_for('both') }}"> AquaCrop </a>
+                    </li>
+                  </ul>
+                </div>
+              </nav>  -->
+
+
 
         </div>
 
 
         <div class="hero-body">
-            <div class="container has-text-centered">
+            <div class="container-fluid has-text-centered">
                {% block content %}
                {% endblock %}
             </div>
         </div>
     </section>
+
+  <!-- <script>
+    var activeNavItem = $('.nav-item');
+
+    activeNavItem.click(function(){
+      activeNavItem.removeClass('active');
+      $(this).addClass('active');  
+    });
+  </script> -->
 </body>
 
 </html>

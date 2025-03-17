@@ -57,8 +57,8 @@
       /* Full-width */
       height: 25px;
       /* Specified height */
-      /* background: #d3d3d3; */
       background: white;
+      /* background: #ebebea; */
       /* Grey background */
       outline: none;
       /* Remove outline */
@@ -127,28 +127,46 @@
 <!-- <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
   integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script> -->
 
-<div class="column is-4 is-offset-4">
-  <h5>Select center of field on map, then set radius</h5>
-  <div class="slidecontainer">
-    <input type="range" min="1" max="1600" value="400" class="slider" id="myRange">
-    <p class="smalltext">Radius in meters: <span id='thespan'></span></p>
+
+
+<div class="row">
+  <div class="column is-4 is-offset-4" style="height: 100%">
+    <p>The Water Irrigation Scheduler for Efficiency (WISE) is a user-friendly tool developed to optimize irrigation scheduling, helping you maximize crop yields while minimizing excess water usage. Designed for farmers, consultants, and researchers, WISE accommodates various soil types, climates, and irrigation practices across much of the Western United States. This tool was originally developed by – (the Department of Civil and Environmental Engineering at Colorado State University, <a href="http://wise.colostate.edu/" target="_blank">http://wise.colostate.edu/</a> )​</p>
+    <p><strong>Key Features:​</strong></p>
+    <p>Customizable Crop Fields: Easily define your crop boundaries and create tailored fields specific to your needs.​</p>
+    <p>Integrated Data Sources: Enhance your irrigation planning by incorporating:​</p>
+    <ul>
+      <li>Weather Station Data: Access local, near real-time weather information.​</li>
+      <li>Soil Data: Retrieve soil properties from databases like the NRCS.</li>
+      <li>Field Attributes: Input specific details about your crops and irrigation systems.</li>
+    </ul>
+    <p><strong>Results and Reporting:​</strong></p>
+    <p>After setting up your field, WISE generates a customized irrigation schedule that includes:</p>
+    <ul>
+      <li>Summary of Crop Irrigation Needs: Understand the specific water requirements for your crops.​</li>
+      <li>Detailed Scheduling: View tables and graphs illustrating optimal irrigation times and amounts.​</li>
+    </ul>
+    <p>You can export these results as Excel files or images or print them directly from the interface for seamless integration into your records. With WISE, efficient irrigation scheduling is at your fingertips, enabling you to make informed decisions that benefit your crops and resource management. ​</p>
   </div>
-  <p></p>
-  <button class="btn btn-danger" id="submit" onclick="setCookie()">Next</button>
-  <p></p>
-  <div id="map"></div>
+  <div class="column is-4 is-offset-4 bluebox" style="height: 100%">
+    <h5>Select center of field on map, then set radius</h5>
+    <div class="slidecontainer">
+      <input type="range" min="1" max="1600" value="400" class="slider" id="myRange">
+      <p class="smalltext">Radius in meters: <span id='thespan'></span></p>
+    </div>
+    <p></p>
+    <button class="btn btn-danger" id="submit" onclick="setCookie()">Next</button>
+    <p></p>
+    <div id="map"></div>
 
-  <script
-  src="https://unpkg.com/leaflet@1.7.1/dist/leaflet-src.js"
-  integrity="sha512-I5Hd7FcJ9rZkH7uD01G3AjsuzFy3gqz7HIJvzFZGFt2mrCS4Piw9bYZvCgUE0aiJuiZFYIJIwpbNnDIM6ohTrg=="
-  crossorigin=""
-  ></script>
-  <script src="https://unpkg.com/leaflet.gridlayer.googlemutant@latest/dist/Leaflet.GoogleMutant.js"></script>
-
-
-
-</div>
-
+    <script
+    src="https://unpkg.com/leaflet@1.7.1/dist/leaflet-src.js"
+    integrity="sha512-I5Hd7FcJ9rZkH7uD01G3AjsuzFy3gqz7HIJvzFZGFt2mrCS4Piw9bYZvCgUE0aiJuiZFYIJIwpbNnDIM6ohTrg=="
+    crossorigin=""
+    ></script>
+    <script src="https://unpkg.com/leaflet.gridlayer.googlemutant@latest/dist/Leaflet.GoogleMutant.js"></script>
+  </div>
+<div>
 
 
 <script>
@@ -163,7 +181,7 @@
       document.cookie = "longitude="+String(thelatlng.lng);
       
       console.log(document.circle.radius);
-      window.location.href="/upload";
+      window.location.href="/aftermap";
     }
 
   }
@@ -198,7 +216,7 @@
 
     popup
       .setLatLng(e.latlng)
-      .setContent("You clicked the map at " + e.latlng.toString())
+      .setContent("Coordinates: " + e.latlng.toString())
       .openOn(map);
 
     thepoint.setLatLng(e.latlng);

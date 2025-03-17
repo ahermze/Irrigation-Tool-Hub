@@ -1,27 +1,40 @@
 {% extends "base/base.html" %}
 
 {% block content %}
-<div class="column is-4 is-offset-4">
-    <h3 class="title">Upload Excel File</h3>
-    <div class="box">
-        <form method="POST" enctype="multipart/form-data" class="form-inline">
-            <div class="form-group">
-                <input class="input is-large" type="file" name="file" placeholder="Upload File Here" autofocus="">
-            </div>
+<div class="row">
+    <div class="column is-4 is-offset-4" style="height: 100%">
+        <p><strong>Introduction</strong>: The Crop Water Stress Index (CWSI) is a valuable metric used to assess and quantify water stress in crops. It measures the difference between canopy temperature and air temperature, adjusted for environmental factors like vapor pressure deficit. This index aids in efficient irrigation scheduling and water management by providing a standardized method to monitor plant water status.​</p>
+        <p><strong>About This Tool:</strong></p>
+        <p><strong>Steps:</strong></p>
+        <p><strong>1.</strong> Upload your data file. (Here is a sample data file: <a href="/static/data.xlsx" target="_blank"> data.xls</a> )</p>
+        <p><strong>2.</strong> Select the date range to calculate the CWSI ​</p>
+        <p><strong>3.</strong> Select the daytime range to calculate the CWSI​</p>
 
-            <div class="form-group">
-                <input type="submit" value="Upload" , class="button is-block is-info is-large is-fullwidth">
-            </div>
-        </form>
-        <p></p>
-        <p>The Radius: <span id="circleradius"></span></p>
-        <p>The Latitude: <span id="thelat"></span></p>
-        <p>The Longitude: <span id="thelng"></span></p>
 
     </div>
-</div>
+    <div class="column is-4 is-offset-4 bluebox" style="height: 100%">
+        <h3 class="title">Upload Excel File</h3>
+        <div class="box">
+            <form method="POST" enctype="multipart/form-data" class="form-inline">
+                <div class="form-group">
+                    <input class="input is-large" type="file" name="file" placeholder="Upload File Here" autofocus="">
+                </div>
 
-<script>
+                <div class="form-group">
+                    <input type="submit" value="Upload" , class="button is-block is-info is-large is-fullwidth">
+                </div>
+            </form>
+            <p></p>
+            <!-- <p class="smalltext">(The following is just for testing with CWSI+WISE)</p>
+            <p class="smalltext">The Radius: <span id="circleradius"></span></p>
+            <p class="smalltext">The Latitude: <span id="thelat"></span></p>
+            <p class="smalltext">The Longitude: <span id="thelng"></span></p> -->
+
+        </div>
+    </div>
+</div>
+<!-- <script>
+
 
     function getCookieByName(name) {
         const nameEQ = name + "=";
@@ -34,10 +47,10 @@
         }
         return null;
     }
-    document.getElementById("circleradius").innerHTML = getCookieByName("radius");
-    document.getElementById("thelat").innerHTML = getCookieByName("latitude");
-    document.getElementById("thelng").innerHTML = getCookieByName("longitude");
+    // document.getElementById("circleradius").innerHTML = getCookieByName("radius");
+    // document.getElementById("thelat").innerHTML = getCookieByName("latitude");
+    // document.getElementById("thelng").innerHTML = getCookieByName("longitude");
 
-</script>
+</script> -->
 
 {% endblock %}
