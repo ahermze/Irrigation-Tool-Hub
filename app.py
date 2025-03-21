@@ -5,6 +5,8 @@ from lib2to3.pgen2.pgen import DFAState
 from flask import Flask, request, redirect, url_for, render_template, flash, Blueprint, abort
 from flask_bootstrap import Bootstrap
 from werkzeug.utils import secure_filename
+import noaa
+import requests
 
 app = Flask(__name__)
 Bootstrap(app)
@@ -44,7 +46,11 @@ def themap():
 
 @app.route("/aftermap")
 def aftermap():
-    return render_template("/base/aftermap.html")
+    if request.method == "GET":
+        # print(request.cookies.get('radius'))
+        weather_data = noaa.get_weather(request.cookies.get('latitude'), request.cookies.get('longitude'))
+        return render_template("/base/aftermap.html", weather_data=weather_data)
+        # return render_template("/base/aftermap.html")
 
 
 @app.route("/upload", methods=["POST"])
