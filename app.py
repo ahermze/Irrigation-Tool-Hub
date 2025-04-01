@@ -7,6 +7,7 @@ from flask_bootstrap import Bootstrap
 from werkzeug.utils import secure_filename
 import noaa
 import requests
+import openweather
 
 app = Flask(__name__)
 Bootstrap(app)
@@ -48,9 +49,11 @@ def themap():
 def aftermap():
     if request.method == "GET":
         # print(request.cookies.get('radius'))
-        weather_data = noaa.get_weather(request.cookies.get('latitude'), request.cookies.get('longitude'))
-        return render_template("/base/aftermap.html", weather_data=weather_data)
-        # return render_template("/base/aftermap.html")
+        # weather_data = noaa.get_weather(request.cookies.get('latitude'), request.cookies.get('longitude'))
+        # noaa.find_station(request.cookies.get('latitude'), request.cookies.get('longitude'))
+        # return render_template("/base/aftermap.html", weather_data=weather_data)
+        result = openweather.get_weather(request.cookies.get('latitude'), request.cookies.get('longitude'))
+        return render_template("/base/aftermap.html")
 
 
 @app.route("/upload", methods=["POST"])
