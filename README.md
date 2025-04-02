@@ -1,51 +1,9 @@
-# CWSI Calculation with Python and Flask API
+# Irrigation Tool Hub Application
 This repository contains a Python implementation of the Crop Water Stress Index (CWSI) calculation along with a Flask API to expose the functionality as a web service.
-This repository contains the Flask application file (main.py), the dataset folder (excel_files), the backend folder contains all the calculating functions, and the jupyter notebook for references (CWSI_calculation.ipynb)
+Also includes WISE tool
 
-**Table of Contents**
-- _Introduction_
-- _Installation_
-- _Usage_
 
-**Introduction:**
-The Crop Water Stress Index (CWSI) is an important indicator used in agricultural research to evaluate water stress in crops. This repository provides a Python library that calculates the CWSI based on preserved data.
 
-**Installation:**  
-To install the CWSI calculation library and the Flask API, follow these steps:
-
-1. Clone the repository:
-```
-git clone https://github.com/lhomanh/CWSI-Calculation-with-Python-and-FlaskAPI.git
-```
-
-2. Create a virtual environment (optional but recommended):
-```
-python3 -m venv venv
-source venv/bin/activate
-```
-
-3. Install the required dependencies:
-```
-pip3 install -r requirements.txt
-```
-
-Requirements file including these libraries:
-```
-numba
-numpy==1.21.1
-pandas
-matplotlib
-flask
-flask_bootstrap
-```
-
-**Usage:**
-To calculate the CWSI using the command-line interface, use the following steps:
-
-1. Start Flask app:
-```
-python app.py
-```
 
 2. Go to the Flask address in the command line (E.g. http://127.0.0.1:3000) - The result is shown below:   
 ![image](https://github.com/lhomanh/CWSI-Calculation-with-Python-and-FlaskAPI/assets/60242356/64a0e411-ee68-47d9-8cf9-2c2374465660)

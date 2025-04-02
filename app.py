@@ -5,8 +5,6 @@ from lib2to3.pgen2.pgen import DFAState
 from flask import Flask, request, redirect, url_for, render_template, flash, Blueprint, abort
 from flask_bootstrap import Bootstrap
 from werkzeug.utils import secure_filename
-# import noaa
-import requests
 import openweather
 
 app = Flask(__name__)
