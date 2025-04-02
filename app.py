@@ -53,7 +53,8 @@ def aftermap():
         # noaa.find_station(request.cookies.get('latitude'), request.cookies.get('longitude'))
         # return render_template("/base/aftermap.html", weather_data=weather_data)
         result = openweather.get_weather(request.cookies.get('latitude'), request.cookies.get('longitude'))
-        return render_template("/base/aftermap.html")
+        # print(result)
+        return render_template("/base/aftermap.html", weather_data=result)
 
 
 @app.route("/upload", methods=["POST"])

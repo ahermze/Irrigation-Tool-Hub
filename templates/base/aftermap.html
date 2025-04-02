@@ -21,12 +21,15 @@
       <p>You can export these results as Excel files or images or print them directly from the interface for seamless integration into your records. With WISE, efficient irrigation scheduling is at your fingertips, enabling you to make informed decisions that benefit your crops and resource management. ​</p>
     </div>
     <div class="column is-4 is-offset-4 bluebox" style="height: 100%">
-        <p>The Radius: <span id="radius"></span></p>
-        <p>The Latitude: <span id="latitude"></span></p>
-        <p>The Longitude: <span id="longitude"></span></p>
-       
-        
-    
+        <p>Field Radius: <span id="radius"></span></p>
+        <p>Latitude: <span id="latitude"></span></p>
+        <p>Longitude: <span id="longitude"></span></p>
+       <br>
+        <p>Place: {{weather_data['name']}}</p>
+        <p>Description: {{weather_data['weather'][0]['description']}}</p>
+        <p>Temp: {{weather_data['main']['temp']}}&deg;F</p>
+        <p>Humidity: {{weather_data['main']['humidity']}}%</p>
+
 
     </div>
   <div>
