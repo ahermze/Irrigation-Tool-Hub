@@ -6,3 +6,4 @@ flask
 flask_bootstrap
 openpyxl
 requests
+dotenv
