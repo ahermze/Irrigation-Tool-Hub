@@ -1,7 +1,10 @@
-# https://api.openweathermap.org/data/2.5/weather?lat=40.8136&lon=96.7026&appid=5dce344bb5f7327c5c215b3aaa1a78c7
 import requests
+import os
+from dotenv import load_dotenv, dotenv_values
+load_dotenv()
 def get_weather(latitude, longitude):
-    url = f'https://api.openweathermap.org/data/2.5/weather?lat={latitude}&lon={longitude}&appid=5dce344bb5f7327c5c215b3aaa1a78c7&units=imperial'
+    url = f'https://api.openweathermap.org/data/2.5/weather?lat={latitude}&lon={longitude}&units=imperial&appid='+os.getenv("weather_api_id")
+
     response = requests.get(url)
     try:
         data=response.json()
