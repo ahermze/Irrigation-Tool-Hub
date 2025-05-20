@@ -18,7 +18,7 @@
         <div class="box">
             <form method="POST" enctype="multipart/form-data" class="form-inline">
                 <div class="form-group">
-                    <input class="input is-large" type="file" name="file" placeholder="Upload File Here" autofocus="">
+                    <input class="input is-large"  id="fileInput" onchange="changeButton()" type="file" name="file" placeholder="Upload File Here" autofocus="">
                 </div>
 
                 <!-- <div class="form-group"> -->
@@ -30,35 +30,25 @@
                         </div>
                 
 
-                            <button id="sub" type='submit' class="btn btn-danger">Next</button>
+                            <button id="sub" type='submit' class="btn btn-danger" disabled>Upload</button>
                         </form>
                         
-                        <!-- <p class="smalltext">(The following is just for testing with CWSI+WISE)</p>
-                        <p class="smalltext">The Radius: <span id="circleradius"></span></p>
-                        <p class="smalltext">The Latitude: <span id="thelat"></span></p>
-                        <p class="smalltext">The Longitude: <span id="thelng"></span></p> -->
                         
                         </div>
     </div>
 </div>
-<!-- <script>
-
-
-    function getCookieByName(name) {
-        const nameEQ = name + "=";
-        const ca = document.cookie.split(';');
-        for(let i=0; i < ca.length; i++) {
-            let c = ca[i];
-            while (c.charAt(0) == ' ') c = c.substring(1,c.length);
-            if (c.indexOf(nameEQ) == 0) 
-            return c.substring(nameEQ.length,c.length);
+<script>
+    function changeButton(){
+        const fileInput = document.getElementById('fileInput');
+        const theButton = document.getElementById("sub");
+        if(!fileInput.value){
+            theButton.disabled = true;
+        }else{
+            theButton.disabled = false;
         }
-        return null;
     }
-    // document.getElementById("circleradius").innerHTML = getCookieByName("radius");
-    // document.getElementById("thelat").innerHTML = getCookieByName("latitude");
-    // document.getElementById("thelng").innerHTML = getCookieByName("longitude");
 
-</script> -->
+    
+</script>
 
 {% endblock %}

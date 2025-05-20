@@ -155,7 +155,7 @@
       <p class="smalltext">Radius in meters: <span id='thespan'></span></p>
     </div>
     <p></p>
-    <button class="btn btn-danger" id="submit" onclick="setCookie()">Next</button>
+    <button class="btn btn-danger" id="submit" onclick="setCookie()" disabled>Next</button>
     <p></p>
     <div id="map"></div>
 
@@ -170,7 +170,7 @@
 
 
 <script>
-
+  
   function setCookie(){
     if (document.circle){
       theRadius = document.circle._mRadius;
@@ -201,7 +201,12 @@
   var popup = L.popup();
   markedyet = 0;
   document.circle = null;
-
+  
+  if (markedyet == 0){
+    const theButton = document.getElementById("submit");
+        theButton.disabled = true;
+  }
+  
   function onMapClick(e) {
     if (markedyet == 0) {
       thepoint = L.marker(e.latlng).addTo(map);
@@ -210,8 +215,11 @@
         fillColor: '#f03',
         fillOpacity: 0.5,
         radius: 400
-      }).addTo(map);
-      markedyet = 1;
+        }).addTo(map);
+        markedyet = 1;
+        const theButton = document.getElementById("submit");
+        theButton.disabled = false;
+
     }
 
     popup
