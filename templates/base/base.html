@@ -20,8 +20,6 @@
 
 
 
-    
-
 </head>
 
 <body>
@@ -38,56 +36,25 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNavDropdown">
                   <ul class="navbar-nav">
-                    <li class="nav-item active">
-                      <a class="nav-link" href="{{ url_for('upload') }}"> CWSI <span class="sr-only">(current)</span></a>
+                    <li class="nav-item link" style="width: fit-content;">
+                      <a class="nav-link" href="{{ url_for('upload') }}">CWSI<span class="sr-only">(current)</span></a>
                     </li>
-                    <li class="nav-item active">
-                      <a class="nav-link" href="{{ url_for('themap') }}"> WISE </a>
+                    <li class="nav-item link" style="width: fit-content;">
+                      <a class="nav-link" href="{{ url_for('wiseupload') }}">WISE</a>
                     </li>
-                    <li class="nav-item active">
-                      <a class="nav-link" href="{{ url_for('both') }}"> CWSI+WISE </a>
+                    <li class="nav-item link" style="width: fit-content;">
+                      <a class="nav-link" href="{{ url_for('both') }}">CWSI+WISE</a>
                     </li>
-                    <li class="nav-item active">
-                      <a class="nav-link" href="{{ url_for('both') }}"> RSCWSI </a>
+                    <li class="nav-item link" style="width: fit-content;">
+                      <a class="nav-link" href="{{ url_for('both') }}">RSCWSI</a>
                     </li>
-                    <li class="nav-item active">
-                      <a class="nav-link" href="{{ url_for('both') }}"> AquaCrop </a>
+                    <li class="nav-item link" style="width: fit-content;">
+                      <a class="nav-link" href="{{ url_for('both') }}">AquaCrop</a>
                     </li>
                   </ul>
                 </div>
               </nav>
-
-
-              <!-- <nav class="navbar navbar-expand-lg navbar-dark">
-                <a class="navbar-brand" href="{{ url_for('index') }}"><strong>Irrigation Tool Hub</strong></a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                  <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                  <ul class="navbar-nav">
-                    <li class="nav-item active">
-                      <a class="nav-link" href="{{ url_for('upload') }}"> CWSI <span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item active">
-                      <a class="nav-link" href="{{ url_for('themap') }}"> WISE </a>
-                    </li>
-                    <li class="nav-item active">
-                      <a class="nav-link" href="{{ url_for('both') }}"> CWSI+WISE </a>
-                    </li>
-                    <li class="nav-item active">
-                      <a class="nav-link" href="{{ url_for('both') }}"> RSCWSI </a>
-                    </li>
-                    <li class="nav-item active">
-                      <a class="nav-link" href="{{ url_for('both') }}"> AquaCrop </a>
-                    </li>
-                  </ul>
-                </div>
-              </nav>  -->
-
-
-
         </div>
-
 
         <div class="hero-body">
             <div class="container-fluid has-text-centered">
@@ -105,6 +72,17 @@
       $(this).addClass('active');  
     });
   </script> -->
+  <script>
+    const currentLocation = window.location.pathname;
+    const navLinks = document.querySelectorAll('.nav-link');
+    navLinks.forEach(link => {
+        // Check if the link's href matches the current page URL
+        if (link.getAttribute('href') === currentLocation) {
+            // Add the 'active' class to the matching link
+            link.classList.add('active');
+        }
+    });
+</script>  
 </body>
 
 </html>

@@ -37,12 +37,20 @@ def profile():
 def both():
     return render_template("/base/both.html")
 
+
+@app.route("/wiseupload")
+def wiseupload():
+    return render_template("/base/WISE_upload.html")
+
+
+# No longer needed :(
 @app.route("/themap")
 def themap():
     # if request.method == ["POST"]:
 
     return render_template("/base/themap.html")
 
+# Not needed :(
 @app.route("/aftermap")
 def aftermap():
     if request.method == "GET":
@@ -76,19 +84,25 @@ def upload_file():
         return render_template("/base/upload_success_2nd.html")
 
 
+@app.route("/wiseupload", methods=["POST"])
+def upload_wise_file():
+    global filename_
+    if request.method == "POST":
+        if "file" not in request.files:
+            print("No file part")
+            return redirect(request.url)
+        file = request.files["file"]
+        if file.filename == "":
+            print("No selected file")
+            return redirect(request.url)
+        if file:
+            filename_ = file.filename
+            file_ext = os.path.splitext(filename_)[1]
+            if file_ext != ".xlsx":
+                abort(400)
+            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename_))
 
-
-# @app.route("/upload_success", methods=["GET", "POST"])
-# def upload_success():
-#     # treatment_types = ['SWB_40', 'SWB_65', 'SWB_90']
-#     if request.method == "POST":
-        
-        
-#         print("NEXT")
-#         return render_template("/base/upload_success_2nd.html")
-
-#     return render_template("/base/upload_success.html") #, treatment_types=treatment_types)
-
+        return render_template("/base/WISE_result.html")
 
 @app.route("/upload_success_2nd", methods=["GET", "POST"])
 def upload_success_2nd():
@@ -118,61 +132,6 @@ def upload_success_2nd():
         return render_template("/base/result.html")
 
     return render_template("/base/upload_success_2nd.html")
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# @app.route("/upload_success", methods=["GET", "POST"])
-# def upload_success():
-#     # treatment_types = ['SWB_40', 'SWB_65', 'SWB_90']
-#     if request.method == "POST":
-#         full_name = upload_dir + filename_
-#         global treatment
-#         treatment = request.form["treatment"]
-#         global start_DOY
-#         start_DOY = request.form["start_DOY"]
-#         start_DOY = int(start_DOY)
-#         global end_DOY
-#         end_DOY = request.form["end_DOY"]
-#         end_DOY = int(end_DOY)
-#         print("NEXT")
-#         return render_template("/base/upload_success_2nd.html")
-
-#     return render_template("/base/upload_success.html") #, treatment_types=treatment_types)
-
-
-# @app.route("/upload_success_2nd", methods=["GET", "POST"])
-# def upload_success_2nd():
-#     if request.method == "POST":
-#         full_name = upload_dir + filename_
-#         global treatment    
-#         global start_DOY
-#         global end_DOY
-#         start_hour = request.form["start_hour"]
-#         start_hour = int(start_hour)
-#         end_hour = request.form["end_hour"]
-#         end_hour = int(end_hour)
-#         select_hour = request.form["select_hour"]
-#         select_hour = int(select_hour)
-#         print("NEXT")
-#         plot_buttons(
-#             full_name, start_DOY, end_DOY, treatment, start_hour, end_hour, select_hour
-#         )
-#         return render_template("/base/result.html")
-
-#     return render_template("/base/upload_success.html")
-
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=3000, threaded=False, debug=True)

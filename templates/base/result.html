@@ -44,7 +44,18 @@
     </div>
     <a href="{{ url_for('upload_success_2nd') }}" class="btn btn-info" role="button">Back to insert values</a>
   </div>
-
+  
+  <script>
+    const currentLocation = window.location.pathname;
+    const navLinks = document.querySelectorAll('.nav-link');
+    navLinks.forEach(link => {
+        // Check if the link's href matches the current page URL
+        if (link.getAttribute('href') === currentLocation) {
+            // Add the 'active' class to the matching link
+            link.classList.add('active');
+        }
+    });
+  </script>
   {% endblock %}
 
 

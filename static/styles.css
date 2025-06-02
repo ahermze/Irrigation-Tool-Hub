@@ -1,13 +1,5 @@
-
-
-
 body {
     background-color:rgb(254, 253, 250);
-    /* background-color: #c7c8ca; */
-
-    /* background-color: #242423; */
-
-
     background-position: center;
     background-size: cover;
 
@@ -37,19 +29,46 @@ h1 {
 .navbar-dark .navbar-toggler-icon {
     background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255, 255, 255)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
   }
+   nav a { color: white !important; }
 
-
-  nav a:hover { font-weight: bold !important; }
-
-/* #navbarSupportedContent {
-    .nav-item a {
-        font-weight: normal;
+  nav a:after {
+    font-weight: strong !important;
+  }
+    
+  .nav-link.active {
+    text-decoration: underline; /* Underline the active link */
+    /* font-weight: bold; Optional: make the active link bold */
     }
-      
-      .nav-item.active a {
-        font-weight: bold;
+  nav a:hover {text-decoration: underline !important}
+
+  /* .navbar-nav a:after{
+    content: "";
+    position: relative;
+    width: 0%;
+    height: 1.5px;
+    display: block;
+    transition: all 0.3s ease;
+    bottom: 25%;
+  }
+
+  .navbar-nav a:hover::after {
+    width: 100%;
+    height: 1.5px;
+    background-color: #fff;
+  } */
+
+
+
+  .nav-list {
+     list-style: none;
+     padding: 0;
+     margin: 0;
+     display: flex;
     }
-} */
+    /* .nav-item{
+        margin-right: 8px;
+    } */
+
 
 
 

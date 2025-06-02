@@ -10,7 +10,6 @@
         <p><strong>3.</strong> Select the daytime range to calculate the CWSI​</p>
     </div>
 
-
     <div class="column is-4 is-offset-4 bluebox">
 
       <h1><b>Upload Successful</b></h1>
@@ -37,7 +36,6 @@
             </label>
         </div>
 
-
         <br>
 
         <label for="title">Insert the start DOY (min: 173)</label>
@@ -55,9 +53,6 @@
             Provide valid number
         </div>
         <br>
-
-
-
 
           <label for="title">Insert the start hour value (24-hour scale)</label>
           <br>
@@ -102,7 +97,7 @@
         // Loop over them and prevent submission
         var validation = Array.prototype.filter.call(forms, function(form) {
           form.addEventListener('submit', function(event) {
-            if (form.checkValidity() === false) {
+            if (form.checkValidity() == false) {
               event.preventDefault();
               event.stopPropagation();
             } else {
@@ -116,8 +111,7 @@
         });
       }, false);
     })();
+
     </script>
-
-
 
 {% endblock %}
