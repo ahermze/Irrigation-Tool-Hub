@@ -1,11 +1,13 @@
-
 from backend.func_new import *
+# from backend.wisecalc import *
 import os
 from lib2to3.pgen2.pgen import DFAState
 from flask import Flask, request, redirect, url_for, render_template, flash, Blueprint, abort
 from flask_bootstrap import Bootstrap
 from werkzeug.utils import secure_filename
 import openweather
+from backend.wiseprocess import *
+
 
 app = Flask(__name__)
 Bootstrap(app)
@@ -102,7 +104,15 @@ def upload_wise_file():
                 abort(400)
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename_))
 
-        return render_template("/base/WISE_result.html")
+        # full_name = upload_dir + filename_
+        # plot_wise_stuff(full_name)
+
+        processfile()
+        thefiles = [f for f in os.listdir("./static") if f.startswith('plot') and f.endswith('.png')]
+
+        return render_template("/base/WISE_result.html", numfiles=thefiles)
+
+
 
 @app.route("/upload_success_2nd", methods=["GET", "POST"])
 def upload_success_2nd():

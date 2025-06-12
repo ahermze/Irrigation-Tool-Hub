@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 def load(file_name, sheet):
     return read_excel(file_name, sheet_name=sheet)
 
-def load_filename(file_name):
+def load_file(file_name):
 
     #### Loading the information
     st = load(file_name, 'sites')
@@ -30,12 +30,18 @@ def load_filename(file_name):
     gs = load(file_name, 'growth stage') \
         .merge(idx, on='plot', how='right') \
 
-    return 
+    return st, wx, ir, swd, gs
+
+
+def setup(st, wx, ir, swd, gs):
+    print()
 
 
 
 
-
+def plot_wise_stuff(file_name):
+    st, wx, ir, swd, gs = load_file(file_name)
+    setup(st, wx, ir, swd, gs)
 
 
 

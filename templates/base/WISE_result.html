@@ -19,34 +19,61 @@
       clear: both;
       display: table;
     }
+
+
+
+    /* Flex container for images */
+    .image-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    /* Default image styles */
+    .image-container img {
+      
+      margin: 5px; /* Add some spacing between images */
+
+
+      display: flex; 
+      flex-wrap: wrap; 
+      justify-content: center;
+    }
+
+    /* Media query for smaller screens */
+    @media (max-width: 900px) {
+      .image-container img {
+        width: 100%; /* Full width for smaller screens */
+      }
+    }
   </style>
+
+  <script>
+    function updateImage() {
+            // Get the selected value from the dropdown
+            var selectedPlot = document.getElementById("plotSelect").value;
+            // Update the image source
+            document.getElementById("plotImage").src = selectedPlot;
+        }
+  </script>
+
 </head>
 
 <body>
   {% extends "base/base.html" %}
   {% block content %}
     
-  <div class="column is-4 is-offset-4">
+  <div class="column is-9 is-offset-9">
     <h1><b>Calculation Finished</b></h1>
 
-    <div class="row">
-      <div>
-        <!-- <h1>CWSI coefficient for selected treatment </h1> -->
-        <img src="/static/result_2pm_cwsi.png" class="center" width="auto" height="auto">
-      </div>
-
-      <div>
-        <!-- <h1>Regression plot</h1> -->
-        <div><img src="/static/ab_plot.png" class="center" width="auto" height="auto">
-        </div>
-      </div>
-
+    <!-- <div style="display: flex; flex-wrap: wrap; justify-content: center;">       -->
+      <div class="image-container">
+      {% for i in numfiles %}
+        <img src="{{ url_for('static', filename=i) }}" class="center" style="display: flex; max-width: 650px" width="45%" height="auto">
+        
+      {% endfor %}
     </div>
-    <a href="{{ url_for('wiseupload') }}" class="btn btn-info" role="button">Back file upload</a>
   </div>
-
-
-
   {% endblock %}
 
     
