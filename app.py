@@ -8,6 +8,7 @@ from werkzeug.utils import secure_filename
 import openweather
 from backend.wiseprocess import *
 
+from tkinter import *
 
 app = Flask(__name__)
 Bootstrap(app)
@@ -116,32 +117,48 @@ def upload_wise_file():
 
 @app.route("/upload_success_2nd", methods=["GET", "POST"])
 def upload_success_2nd():
-    if request.method == "POST":
-        full_name = upload_dir + filename_
-        global treatment    
-        treatment = request.form["treatment"]
+    try:    
+        if request.method == "POST":
+            full_name = upload_dir + filename_
+            global treatment    
+            treatment = request.form["treatment"]
 
-        global start_DOY
-        start_DOY = request.form["start_DOY"]
-        start_DOY = int(start_DOY)
+            global start_DOY
+            start_DOY = request.form["start_DOY"]
+            start_DOY = int(start_DOY)
 
-        global end_DOY
-        end_DOY = request.form["end_DOY"]
-        end_DOY = int(end_DOY)
+            global end_DOY
+            end_DOY = request.form["end_DOY"]
+            end_DOY = int(end_DOY)
 
-        start_hour = request.form["start_hour"]
-        start_hour = int(start_hour)
-        end_hour = request.form["end_hour"]
-        end_hour = int(end_hour)
-        select_hour = request.form["select_hour"]
-        select_hour = int(select_hour)
-        print("NEXT")
-        plot_buttons(
-            full_name, start_DOY, end_DOY, treatment, start_hour, end_hour, select_hour
-        )
-        return render_template("/base/result.html")
+            start_hour = request.form["start_hour"]
+            start_hour = int(start_hour)
+            end_hour = request.form["end_hour"]
+            end_hour = int(end_hour)
+            select_hour = request.form["select_hour"]
+            select_hour = int(select_hour)
+            print("NEXT")
+            plot_buttons(
+                full_name, start_DOY, end_DOY, treatment, start_hour, end_hour, select_hour
+            )
+            return render_template("/base/result.html")
 
-    return render_template("/base/upload_success_2nd.html")
+        return render_template("/base/upload_success_2nd.html")
+    except Exception as e:
+        window = Tk()
+        window.title("Error Uploading")
+
+        text_widget = Text(window, wrap='word', height=5, width=50)
+        text_widget.pack(padx=10, pady=10)
+        text_widget.insert('1.0', f"Error: {e}")
+        text_widget.config(state='disabled')
+        text_widget.pack(padx=2, pady=2)
+        ok_button = Button(window, text="OK", command=window.destroy)
+        ok_button.pack(pady=(0, 10))
+
+        window.mainloop()
+
+        return render_template("/base/upload.html")
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=3000, threaded=False, debug=True)
