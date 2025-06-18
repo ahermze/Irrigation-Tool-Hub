@@ -145,20 +145,8 @@ def upload_success_2nd():
 
         return render_template("/base/upload_success_2nd.html")
     except Exception as e:
-        window = Tk()
-        window.title("Error Uploading")
-
-        text_widget = Text(window, wrap='word', height=5, width=50)
-        text_widget.pack(padx=10, pady=10)
-        text_widget.insert('1.0', f"Error: {e}")
-        text_widget.config(state='disabled')
-        text_widget.pack(padx=2, pady=2)
-        ok_button = Button(window, text="OK", command=window.destroy)
-        ok_button.pack(pady=(0, 10))
-
-        window.mainloop()
-
-        return render_template("/base/upload.html")
+        error_message = str(e)
+        return render_template("/base/upload_success_2nd.html", error_message=error_message)
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=3000, threaded=False, debug=True)
