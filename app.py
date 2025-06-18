@@ -8,8 +8,6 @@ from werkzeug.utils import secure_filename
 import openweather
 from backend.wiseprocess import *
 
-from tkinter import *
-
 app = Flask(__name__)
 Bootstrap(app)
 app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
