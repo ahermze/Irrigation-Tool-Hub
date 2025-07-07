@@ -107,9 +107,12 @@ def upload_wise_file():
         # plot_wise_stuff(full_name)
 
         processfile()
-        thefiles = [f for f in os.listdir("./static") if f.startswith('plot') and f.endswith('.png')]
+        eachdepth = [f for f in os.listdir("./static") if f.startswith('plot') and f.endswith('.png')]
+        alldepth =  [f for f in os.listdir("./static") if f.startswith('tplot') and f.endswith('.png')]
+        eachdepth.sort()
+        alldepth.sort()
 
-        return render_template("/base/WISE_result.html", numfiles=thefiles)
+        return render_template("/base/WISE_result.html", eachdepth=eachdepth, alldepth=alldepth)
 
 
 

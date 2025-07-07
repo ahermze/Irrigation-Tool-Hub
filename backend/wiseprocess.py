@@ -63,6 +63,42 @@ def processfile():
             text.set_alpha(1.0)  # Set the transparency of the legend text to fully opaque
 
         plt.tight_layout()
-        plt.savefig(f"./static/plot{i}.png")
+        plt.savefig(f"./static/plot{i}{site_name}{theplots[i]}.png")
 
-        # plt.show()
+
+
+        site_name = alist[i]['site'].iloc[0]
+        the_year = alist[i]['year'].iloc[0]
+
+        alist[i]['SWD_Sum'] = alist[i][['SWD_15', 'SWD_30', 'SWD_60', 'SWD_90', 'SWD_120', 'SWD_150', 'SWD_200']].sum(axis=1)
+        alist[i].plot(x='DOY', y='SWD_Sum', label='Total SWD', title=f"Site: {site_name}      Plot: {theplots[i]}")
+        
+        plt.xlabel(f"DOY (Day of Year, in {the_year})")
+        plt.ylabel("Total Soil Water Deficit (mm)")
+        plt.axhline(y=0, color='red', linestyle='--', linewidth=1)
+
+        legend = plt.legend(loc='upper center', bbox_to_anchor=(0.5, -0.2), frameon=True, ncol=3)
+        for text in legend.get_texts():
+            text.set_alpha(1.0)  # Set the transparency of the legend text to fully opaque
+
+        plt.tight_layout()
+        plt.savefig(f"./static/tplot{i}{site_name}{theplots[i]}.png")
+
+
+    # for i in range(len(theplots)):
+    #     site_name = alist[i]['site'].iloc[0]
+    #     the_year = alist[i]['year'].iloc[0]
+
+    #     alist[i]['SWD_Sum'] = alist[i][['SWD_15', 'SWD_30', 'SWD_60', 'SWD_90', 'SWD_120', 'SWD_150', 'SWD_200']].sum(axis=1)
+    #     alist[i].plot(x='DOY', y='SWD_Sum', label='Total SWD', title=f"Site: {site_name}      Plot: {theplots[i]}")
+        
+    #     plt.xlabel(f"DOY (Day of Year, in {the_year})")
+    #     plt.ylabel("Total Soil Water Deficit (mm)")
+    #     plt.axhline(y=0, color='red', linestyle='--', linewidth=1)
+
+    #     legend = plt.legend(loc='upper center', bbox_to_anchor=(0.5, -0.2), frameon=True, ncol=3)
+    #     for text in legend.get_texts():
+    #         text.set_alpha(1.0)  # Set the transparency of the legend text to fully opaque
+
+    #     plt.tight_layout()
+    #     plt.savefig(f"./static/tplot{i}.png")
