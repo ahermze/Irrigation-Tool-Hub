@@ -111,7 +111,7 @@
             const startHourInput = document.getElementById('start_hour');
             startHourInput.max = endHour;
 
-            if (form.checkValidity() == false || !ready) {
+            if (form.checkValidity() == false) {
               event.preventDefault();
               event.stopPropagation();
             } else {
