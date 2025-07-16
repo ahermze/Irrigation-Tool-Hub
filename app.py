@@ -19,16 +19,13 @@ app.config["UPLOAD_FOLDER"] = "./excel_files/"
 def index():
     return render_template("/base/index.html")
 
-
 @app.route("/return_upload")
 def return_upload():
     return render_template("/base/upload.html")
 
-
 @app.route("/upload")
 def upload():
     return render_template("/base/upload.html")
-
 
 @app.route("/profile")
 def profile():
@@ -38,11 +35,9 @@ def profile():
 def both():
     return render_template("/base/both.html")
 
-
 @app.route("/wiseupload")
 def wiseupload():
     return render_template("/base/WISE_upload.html")
-
 
 # No longer needed :(
 @app.route("/themap")

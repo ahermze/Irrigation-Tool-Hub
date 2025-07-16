@@ -57,7 +57,7 @@ def processfile():
         alist[i].plot(x='DOY', y=['SWD_15', 'SWD_30', 'SWD_60', 'SWD_90', 'SWD_120', 'SWD_150', 'SWD_200'], label=['SWD_15, 0-15cm', 'SWD_30, 15-45cm', 'SWD_60, 45-75cm', 'SWD_90, 75-105cm', 'SWD_120, 105-135cm', 'SWD_150, 135-165cm', 'SWD_200, 185-215cm'], title=f"Site: {site_name}      Plot: {theplots[i]}")
         plt.xlabel(f"DOY (Day of Year, in {the_year})")
         plt.ylabel("Soil Water Deficit (mm)")
-        plt.axhline(y=0, color='red', linestyle='--', linewidth=1)
+        plt.axhline(y=0, color='black', linestyle='--', linewidth=1)
 
 
         legend = plt.legend(loc='upper center', bbox_to_anchor=(0.5, -0.2), frameon=True, ncol=3)
@@ -77,7 +77,7 @@ def processfile():
         
         plt.xlabel(f"DOY (Day of Year, in {the_year})")
         plt.ylabel("Total Soil Water Deficit (mm)")
-        plt.axhline(y=0, color='red', linestyle='--', linewidth=1)
+        plt.axhline(y=0, color='black', linestyle='--', linewidth=1)
 
         legend = plt.legend(loc='upper center', bbox_to_anchor=(0.5, -0.2), frameon=True, ncol=3)
         for text in legend.get_texts():

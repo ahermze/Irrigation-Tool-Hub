@@ -18,7 +18,7 @@
 
         <label for="title">Select treatment type</label>
         <div class="form-check">
-            <input class="form-check-input" type="radio" name="treatment" id="treatment1" value="SWB_40" checked/>
+            <input class="form-check-input" type="radio" name="treatment" id="treatment1" value="SWB_40"/>
             <label class="form-check-label" for="treatment1">
                 SWB_40
             </label>
@@ -30,7 +30,7 @@
             </label>
         </div>
         <div class="form-check">
-            <input class="form-check-input" type="radio" name="treatment" id="treatment3" value="SWB_90" />
+            <input class="form-check-input" type="radio" name="treatment" id="treatment3" value="SWB_90" checked/>
             <label class="form-check-label" for="treatment3">
                 SWB_90
             </label>
@@ -56,7 +56,7 @@
 
           <label for="title">Insert the start hour value (24-hour scale)</label>
           <br>
-          <input input type="number" name="start_hour" id="start_hour" value="{{start_hour}}" class="form-control" min="1" max="24" required></input>
+          <input input type="number" name="start_hour" id="start_hour" value="{{start_hour}}" class="form-control" min="0" max="24" required></input>
           <div class="invalid-feedback">
               Provide valid hour
           </div>
@@ -64,7 +64,7 @@
 
           <label for="title">Insert the end hour value (24-hour scale)</label>
           <br>
-          <input input type="number" name="end_hour" id="end_hour" value="{{end_hour}}" class="form-control" min="1" max="24" required></input>
+          <input input type="number" name="end_hour" id="end_hour" value="{{end_hour}}" class="form-control" min="0" max="24" required></input>
           <div class="invalid-feedback">
               Provide valid hour
           </div>
@@ -72,7 +72,7 @@
 
           <label for="title">Insert the select hour for CWSI value (24-hour scale)</label>
           <br>
-          <input input type="number" name="select_hour" id="select_hour" value="{{select_hour}}" class="form-control" min="1" max="24" required></input>
+          <input input type="number" name="select_hour" id="select_hour" value="{{select_hour}}" class="form-control" min="0" max="24" required></input>
           <div class="invalid-feedback">
               Provide valid hour
           </div>
@@ -95,16 +95,23 @@
     {% endif %}    
 
 <script>
-  // Example starter JavaScript for disabling form submissions if there are invalid fields
     (function() {
       'use strict';
       window.addEventListener('load', function() {
-        // Fetch all the forms we want to apply custom Bootstrap validation styles to
         var forms = document.getElementsByClassName('needs-validation');
-        // Loop over them and prevent submission
         var validation = Array.prototype.filter.call(forms, function(form) {
           form.addEventListener('submit', function(event) {
-            if (form.checkValidity() == false) {
+            const startHour = parseInt(document.getElementById(('start_hour').value) || 0);
+            const endHour = parseInt(document.getElementById('end_hour').value) || 24;
+            const selectHourInput = document.getElementById('select_hour');
+            selectHourInput.min = startHour;
+            selectHourInput.max = endHour;
+            const endHourInput = document.getElementById('end_hour');
+            endHourInput.min = startHour;
+            const startHourInput = document.getElementById('start_hour');
+            startHourInput.max = endHour;
+
+            if (form.checkValidity() == false || !ready) {
               event.preventDefault();
               event.stopPropagation();
             } else {
