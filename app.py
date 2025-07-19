@@ -7,6 +7,7 @@ from flask_bootstrap import Bootstrap
 from werkzeug.utils import secure_filename
 import openweather
 from backend.wiseprocess import *
+from backend.ETrprocess import *
 
 app = Flask(__name__)
 Bootstrap(app)
@@ -26,6 +27,10 @@ def return_upload():
 @app.route("/upload")
 def upload():
     return render_template("/base/upload.html")
+
+@app.route("/ETrupload")
+def ETrupload():
+    return render_template("/base/ETrupload.html")
 
 @app.route("/profile")
 def profile():
@@ -109,6 +114,28 @@ def upload_wise_file():
 
         return render_template("/base/WISE_result.html", eachdepth=eachdepth, alldepth=alldepth)
 
+@app.route("/ETrupload", methods=["POST"])
+def ETrupload_function():
+    global filename_
+    if request.method == "POST":
+        if "file" not in request.files:
+            print("No file part")
+            return redirect(request.url)
+        file = request.files["file"]
+        if file.filename == "":
+            print("No selected file")
+            return redirect(request.url)
+        if file:
+            filename_ = file.filename
+            file_ext = os.path.splitext(filename_)[1]
+            if file_ext != ".xlsx":
+                abort(400)
+            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename_))
+        
+        processfileetr()
+        return render_template("/base/ETrresult.html")
+
+
 
 @app.route("/upload_success_2nd", methods=["GET", "POST"])
 def upload_success_2nd():
@@ -142,6 +169,9 @@ def upload_success_2nd():
     except Exception as e:
         error_message = str(e)
         return render_template("/base/upload_success_2nd.html", error_message=error_message)
+
+
+
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=3000, threaded=False, debug=True)
