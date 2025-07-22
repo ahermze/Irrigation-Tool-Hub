@@ -8,6 +8,9 @@ from werkzeug.utils import secure_filename
 import openweather
 from backend.wiseprocess import *
 from backend.ETrprocess import *
+from backend.Kc_process import *
+
+from backend.merged_process import *
 
 app = Flask(__name__)
 Bootstrap(app)
@@ -32,6 +35,10 @@ def upload():
 def ETrupload():
     return render_template("/base/ETrupload.html")
 
+@app.route("/Kc_upload")
+def Kc_upload():
+    return render_template("/base/Kc_upload.html")
+
 @app.route("/profile")
 def profile():
     return render_template("/base/profile.html")
@@ -43,6 +50,11 @@ def both():
 @app.route("/wiseupload")
 def wiseupload():
     return render_template("/base/WISE_upload.html")
+
+@app.route("/merge_upload")
+def merge_upload():
+    return render_template("/base/merge_upload.html")
+
 
 # No longer needed :(
 @app.route("/themap")
@@ -83,6 +95,64 @@ def upload_file():
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename_))
 
         return render_template("/base/upload_success_2nd.html")
+
+@app.route("/merge_upload", methods=["POST"])
+def merge_upload_file():
+    global filename_
+    if request.method == "POST":
+        if "file" not in request.files:
+            print("No file part")
+            return redirect(request.url)
+        file = request.files["file"]
+        if file.filename == "":
+            print("No selected file")
+            return redirect(request.url)
+        if file:
+            filename_ = file.filename
+            file_ext = os.path.splitext(filename_)[1]
+            if file_ext != ".xlsx":
+                abort(400)
+            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename_))
+
+        return render_template("/base/merge_success.html")
+
+@app.route("/merge_success", methods=["GET", "POST"])
+def merge_success():
+    try:    
+        if request.method == "POST":
+            full_name = upload_dir + filename_
+            global treatment    
+            treatment = request.form["treatment"]
+
+            global start_DOY
+            start_DOY = request.form["start_DOY"]
+            start_DOY = int(start_DOY)
+
+            global end_DOY
+            end_DOY = request.form["end_DOY"]
+            end_DOY = int(end_DOY)
+
+            start_hour = request.form["start_hour"]
+            start_hour = int(start_hour)
+            end_hour = request.form["end_hour"]
+            end_hour = int(end_hour)
+            select_hour = request.form["select_hour"]
+            select_hour = int(select_hour)
+            print("NEXT")
+            plot_the_buttons(
+                full_name, start_DOY, end_DOY, treatment, start_hour, end_hour, select_hour
+            )
+            return render_template("/base/merge_result.html")
+
+        return render_template("/base/merge_success.html")
+    except Exception as e:
+        error_message = str(e)
+        return render_template("/base/merge_success.html", error_message=error_message)
+
+
+
+
+
 
 
 @app.route("/wiseupload", methods=["POST"])
@@ -132,10 +202,30 @@ def ETrupload_function():
                 abort(400)
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename_))
         
+        process_Kc()
         processfileetr()
         return render_template("/base/ETrresult.html")
 
+@app.route("/Kc_upload", methods=["POST"])
+def upload_Kc_file():
+    global filename_
+    if request.method == "POST":
+        if "file" not in request.files:
+            print("No file part")
+            return redirect(request.url)
+        file = request.files["file"]
+        if file.filename == "":
+            print("No selected file")
+            return redirect(request.url)
+        if file:
+            filename_ = file.filename
+            file_ext = os.path.splitext(filename_)[1]
+            if file_ext != ".xlsx":
+                abort(400)
+            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename_))
+        
 
+        return render_template("/base/Kc_result.html")
 
 @app.route("/upload_success_2nd", methods=["GET", "POST"])
 def upload_success_2nd():

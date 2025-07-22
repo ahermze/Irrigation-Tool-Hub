@@ -1,0 +1,58 @@
+{% extends "base/base.html" %}
+
+{% block content %}
+<div class="row">
+    <div class="column is-4 is-offset-4" style="height: 100%">
+        <p><strong>Introduction</strong>: The Crop Water Stress Index (CWSI) is a valuable metric used to assess and
+            quantify water stress in crops. It measures the difference between canopy temperature and air temperature,
+            adjusted for environmental factors like vapor pressure deficit. This index aids in efficient irrigation
+            scheduling and water management by providing a standardized method to monitor plant water status.​</p>
+        <p><strong>About This Tool:</strong></p>
+        <p><strong>Steps:</strong></p>
+        <!-- <p><strong>1.</strong> Upload your data file. (Here is a sample data file: <a href="/static/data.xlsx" -->
+        <p><strong>1.</strong> Upload your data file.</p>
+        <p><strong>2.</strong> Select the date range to calculate the CWSI ​</p>
+        <p><strong>3.</strong> Select the daytime range to calculate the CWSI​</p>
+    </div>
+    <div class="column is-4 is-offset-4 bluebox" style="height: 100%">
+        <h3 class="title">Upload Excel File</h3>
+        <br>
+        <div class="box">
+            <form method="POST" enctype="multipart/form-data" class="form-inline" onsubmit="return validateFile()">
+                <div class="form-group" style="padding-bottom: 15px;">
+                    <input class="input is-large" accept=".xlsx" id="fileInput" onchange="changeButton()" type="file"
+                        name="file" placeholder="Upload File Here" autofocus="" required>
+                </div>
+        </div>
+        <div class="form-group">
+            <button id="sub" type='submit' class="btn btn-danger" disabled>Upload</button>
+            <p></p>
+            <p>Sample data file: <a href="/static/data.xlsx" target="_blank"> data.xls</a></p>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    function changeButton() {
+        const fileInput = document.getElementById('fileInput');
+        const theButton = document.getElementById("sub");
+        theButton.disabled = !fileInput.value;
+    }
+
+    function validateFile() {
+        const fileInput = document.getElementById('fileInput');
+        const filePath = fileInput.value;
+        const allowedExtensions = /(\.xlsx)$/i;
+
+        if (!allowedExtensions.exec(filePath)) {
+            alert('Please upload a file with .xlsx extension.');
+            fileInput.value = '';
+            theButton.disabled = true;
+            return false;
+        }
+        return true;
+    }
+</script>
+
+{% endblock %}
