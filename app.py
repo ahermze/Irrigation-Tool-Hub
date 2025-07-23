@@ -75,6 +75,8 @@ def aftermap():
         # print(result)
         return render_template("/base/aftermap.html", weather_data=result)
 
+#///////////////////////////////////////////////////////////////////////////////////////////////////
+
 
 @app.route("/upload", methods=["POST"])
 def upload_file():
@@ -95,6 +97,43 @@ def upload_file():
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename_))
 
         return render_template("/base/upload_success_2nd.html")
+
+
+@app.route("/upload_success_2nd", methods=["GET", "POST"])
+def upload_success_2nd():
+    try:    
+        if request.method == "POST":
+            full_name = upload_dir + filename_
+            global treatment    
+            treatment = request.form["treatment"]
+
+            global start_DOY
+            start_DOY = request.form["start_DOY"]
+            start_DOY = int(start_DOY)
+
+            global end_DOY
+            end_DOY = request.form["end_DOY"]
+            end_DOY = int(end_DOY)
+
+            start_hour = request.form["start_hour"]
+            start_hour = int(start_hour)
+            end_hour = request.form["end_hour"]
+            end_hour = int(end_hour)
+            select_hour = request.form["select_hour"]
+            select_hour = int(select_hour)
+            print("NEXT")
+            plot_buttons(
+                full_name, start_DOY, end_DOY, treatment, start_hour, end_hour, select_hour
+            )
+            return render_template("/base/result.html")
+
+        return render_template("/base/upload_success_2nd.html")
+    except Exception as e:
+        error_message = str(e)
+        return render_template("/base/upload_success_2nd.html", error_message=error_message)
+
+#///////////////////////////////////////////////////////////////////////////////////////////////////
+
 
 @app.route("/merge_upload", methods=["POST"])
 def merge_upload_file():
@@ -149,10 +188,7 @@ def merge_success():
         error_message = str(e)
         return render_template("/base/merge_success.html", error_message=error_message)
 
-
-
-
-
+#///////////////////////////////////////////////////////////////////////////////////////////////////
 
 
 @app.route("/wiseupload", methods=["POST"])
@@ -227,38 +263,6 @@ def upload_Kc_file():
 
         return render_template("/base/Kc_result.html")
 
-@app.route("/upload_success_2nd", methods=["GET", "POST"])
-def upload_success_2nd():
-    try:    
-        if request.method == "POST":
-            full_name = upload_dir + filename_
-            global treatment    
-            treatment = request.form["treatment"]
-
-            global start_DOY
-            start_DOY = request.form["start_DOY"]
-            start_DOY = int(start_DOY)
-
-            global end_DOY
-            end_DOY = request.form["end_DOY"]
-            end_DOY = int(end_DOY)
-
-            start_hour = request.form["start_hour"]
-            start_hour = int(start_hour)
-            end_hour = request.form["end_hour"]
-            end_hour = int(end_hour)
-            select_hour = request.form["select_hour"]
-            select_hour = int(select_hour)
-            print("NEXT")
-            plot_buttons(
-                full_name, start_DOY, end_DOY, treatment, start_hour, end_hour, select_hour
-            )
-            return render_template("/base/result.html")
-
-        return render_template("/base/upload_success_2nd.html")
-    except Exception as e:
-        error_message = str(e)
-        return render_template("/base/upload_success_2nd.html", error_message=error_message)
 
 
 

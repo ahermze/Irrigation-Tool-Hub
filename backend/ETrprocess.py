@@ -111,9 +111,6 @@ def processfileetr():
     plt.tight_layout()    
     plt.legend()
 
-    # plt.xticks(ticks=wx.index[::24], rotation=45)  # Adjust the step as needed
-    # plt.gca().xaxis.set_major_formatter(mdates.DateFormatter('%Y-%m-%d %H:%M'))  # Format the date
-
     plt.savefig(f"./static/ETreference.png")
     # plt.show()
     print(st["elev"].loc[0])
@@ -122,8 +119,6 @@ def processfileetr():
 def get_ETr(st, wx):
     elevation = st["elev"]
     
-    result = []
-    date = []
     the_dictionary={}
 
     for index, row in wx.iterrows():
