@@ -220,7 +220,28 @@ def plots_the_retrieval(idx, tc, cc, wx, st, day_start, day_end, treatment_selec
                 cwsi_e_dictionary[DOY] = cwsi.cwsi(Tah, Tch, ll_e, ul_e)
                 
     ETr_dictionary = ETr.get_ETr(st, wx)
+
+    plt.figure(figsize=(20, 6))
+    plt.plot(ETr_dictionary.keys(), ETr_dictionary.values(), marker='.', label="ET reference")
+    plt.title(f"Evapotranspiration Reference Values (ETr)    Site: {st["site"].iloc[0]}")
+    plt.xlabel('Days')
+    plt.ylabel("mm/hr")
+    plt.tight_layout()    
+    plt.legend()
+    plt.grid(True,alpha=0.4)
+    plt.savefig("./static/ETreference.png")
+
     Kc_dictionary = Kc.get_Kc(day_start, day_end)
+
+    plt.figure(figsize=(20, 6))  # Width of 12 inches and height of 6 inches
+    plt.plot(Kc_dictionary.keys(), Kc_dictionary.values(), label="Crop Coefficient")
+
+    plt.title(f"Crop Coefficient Values (Kcr)    Site: {st["site"].iloc[0]}")
+    plt.xlabel('Days')
+    plt.legend()
+    plt.grid(True,alpha=0.4)
+    plt.tight_layout()    
+    plt.savefig("./static/Kc_values.png")
     
     theoretical_result = []
     theoretical_date = []
@@ -231,28 +252,58 @@ def plots_the_retrieval(idx, tc, cc, wx, st, day_start, day_end, treatment_selec
     now = day_start
     while (now <= day_end):
         if (now in ETr_dictionary and now in Kc_dictionary and now in cwsi_t2_dictionary):
-            theoretical_result.append(float(ETr_dictionary[now] * Kc_dictionary[now] * cwsi_t2_dictionary[now]))
+            theoretical_result.append(float(ETr_dictionary[now] * Kc_dictionary[now] * (1-cwsi_t2_dictionary[now])))
             theoretical_date.append(now)
 
         if (now in ETr_dictionary and now in Kc_dictionary and now in cwsi_t2_dictionary):
-            emperical_result.append(float(ETr_dictionary[now] * Kc_dictionary[now] * cwsi_e_dictionary[now]))
+            emperical_result.append(float(ETr_dictionary[now] * Kc_dictionary[now] * (1-cwsi_e_dictionary[now])))
             emperical_date.append(now)
         now=now+1
 
     #### Plot the results
-    plt.figure(figsize=(25, 6))
+    plt.figure(figsize=(20, 6))
 
     # plt.figure()
     plt.plot(theoretical_date, theoretical_result, 'blue', label = "Theoretical")
     plt.plot(emperical_date, emperical_result, 'r', label = "Emperical")
     plt.xlabel('Days')
-    plt.ylabel('Evapotranspiration Value (ET) ')
-    plt.title("Evapotranspiration (ET) for " + treatment_select)
+    plt.title("Evapotranspiration (ET = ETr * Kcr * Ks) for " + treatment_select)
     plt.legend()
+    plt.tight_layout()  
+    plt.grid(True,alpha=0.4)
     plt.savefig("./static/merged_result.png")
-    # plt.show()
 
-    
+    plt.figure(figsize=(20, 6))
+    plt.plot(days, cwsi_t2, 'blue', label = "Theoretical")
+    plt.plot(days, cwsi_e, 'r', label = "Emperical")
+    plt.xlabel('Days')
+    plt.title("CWSI for " + treatment_select)
+    plt.legend()
+    plt.tight_layout()    
+    plt.grid(True,alpha=0.4)
+    plt.savefig("./static/cwsi_graph.png")
+
+
+    cwsi_t2_2 = []
+    for thing in cwsi_t2:
+        cwsi_t2_2.append(1 - thing)
+
+    cwsi_e_2 = []
+    for thing in cwsi_e:
+        cwsi_e_2.append(1 - thing)
+
+    plt.figure(figsize=(20, 6))
+    plt.plot(days, (cwsi_t2_2), 'blue', label = "Theoretical")
+    plt.plot(days, (cwsi_e_2), 'r', label = "Emperical")
+    plt.xlabel('Days')
+    plt.ylabel('Ks coefficients')
+    plt.title("Water Stress Coefficient (Ks = 1 - CWSI)")
+    plt.legend()
+    plt.tight_layout()    
+    plt.grid(True,alpha=0.4)
+    plt.savefig("./static/Ks_graph.png")
+
+
 
 def plot_the_buttons(file_name, day_start, day_end, treatment, start_hour, end_hour, select_hour): 
     tc, cc, wx, st, idx = load_filename(file_name)

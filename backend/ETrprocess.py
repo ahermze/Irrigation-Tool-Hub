@@ -85,26 +85,42 @@ def processfileetr():
     elevation = st["elev"]
 
 
-    result = []
-    date = []
+    # result = []
+    # date = []
+    # for index, row in wx.iterrows():
+    #     Ta = row["Ta"]
+    #     Rh = row["RH"]
+    #     u2 = row["u2"]
+    #     Rs = row["Rs"]
+    #     year = row["year"]
+    #     day = row["day"]
+    #     hour = row["hour"]
+
+    #     year_start = datetime(year,1,1)
+    #     dt = year_start + timedelta(days=day - 1, hours=hour)
+    #     dt.replace(minute=0, second=0)
+        
+    #     date.append(dt)
+    #     result.append(theEquation(Ta,Rh,u2,Rs,elevation))
+
+    the_dictionary={}
+
     for index, row in wx.iterrows():
         Ta = row["Ta"]
         Rh = row["RH"]
         u2 = row["u2"]
         Rs = row["Rs"]
-        year = row["year"]
         day = row["day"]
-        hour = row["hour"]
+            
+        output = theEquation(Ta,Rh,u2,Rs,elevation)
 
-        year_start = datetime(year,1,1)
-        dt = year_start + timedelta(days=day - 1, hours=hour)
-        dt.replace(minute=0, second=0)
-        
-        date.append(dt)
-        result.append(theEquation(Ta,Rh,u2,Rs,elevation))
+        if day in the_dictionary:
+            the_dictionary[day] += output
+        else:
+            the_dictionary[day] = output
 
     plt.figure(figsize=(25, 6))
-    plt.plot(date, result, marker='.', label="ET reference")
+    plt.plot(the_dictionary.keys(), the_dictionary.values(), marker='.', label="ET reference")
     plt.title(f"Evapotranspiration Reference Values (ETr)    Site: {site_name.iloc[0]}")
     plt.xlabel('Date')
     plt.ylabel("mm/hr")
@@ -113,7 +129,7 @@ def processfileetr():
 
     plt.savefig(f"./static/ETreference.png")
     # plt.show()
-    print(st["elev"].loc[0])
+    # print(st["elev"].loc[0])
 
 
 def get_ETr(st, wx):

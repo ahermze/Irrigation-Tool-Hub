@@ -28,7 +28,7 @@
     .image-container img {
       margin: 5px; /* Add some spacing between images */
       min-width: 200px;
-      width: 100%;
+      width: 85%;
       height: auto;
     }
   </style>
@@ -41,7 +41,20 @@
   <div class="column is-9 is-offset-9">
     <h1><b>Calculation Finished</b></h1>
 
-      
+          <div class="image-container" id="eachDepthContainer">
+            <img src="{{ url_for('static', filename='ETreference.png') }}" class="center">
+          </div>
+          <div class="image-container" id="eachDepthContainer">
+            <img src="{{ url_for('static', filename='Kc_values.png') }}" class="center">
+          </div>
+          <div class="image-container" id="eachDepthContainer">
+            <!-- <h1>CWSI coefficient for selected treatment </h1> -->
+            <img src="/static/cwsi_graph.png" class="center" width="auto" height="auto">
+          </div>
+          <div class="image-container">
+            <!-- <h1>CWSI coefficient for selected treatment </h1> -->
+            <img src="/static/Ks_graph.png" class="center">
+          </div>
           <div class="image-container">
             <!-- <h1>CWSI coefficient for selected treatment </h1> -->
             <img src="/static/merged_result.png" class="center">
