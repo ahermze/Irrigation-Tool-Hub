@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    .column {
+      float: left;
+      width: 50%;
+      padding: 5px;
+    }
+
+    /* Clearfix (clear floats) */
+    .row::after {
+      content: "";
+      clear: both;
+      display: table;
+    }
+    .image-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .image-container img {
+      margin: 5px; /* Add some spacing between images */
+      min-width: 200px;
+      width: 85%;
+      height: auto;
+    }
+  </style>
+</head>
+
+<body>
+  {% extends "base/merge_success.html" %}
+  {% block content %}
+    
+  <div class="column is-9 is-offset-9">
+    <h1><b>Calculation Finished</b></h1>
+
+          <div class="image-container" id="eachDepthContainer">
+            <img src="{{ url_for('static', filename='wiseET.png') }}" class="center">
+          </div>
+          
+
+
+          <!-- <div class="image-container" id="eachDepthContainer">
+            <img src="{{ url_for('static', filename='ETreference.png') }}" class="center">
+          </div>
+          <div class="image-container" id="eachDepthContainer">
+            <img src="{{ url_for('static', filename='Kc_values.png') }}" class="center">
+          </div> -->
+
+
+    <a href="{{ url_for('merge_success') }}" class="btn btn-info" role="button">Back to insert values</a>
+  </div>
+  
+  <script>
+    const currentLocation = window.location.pathname;
+    const navLinks = document.querySelectorAll('.nav-link');
+    navLinks.forEach(link => {
+        // Check if the link's href matches the current page URL
+        if (link.getAttribute('href') === currentLocation) {
+            // Add the 'active' class to the matching link
+            link.classList.add('active');
+        }
+    });
+
+  </script>
+  {% endblock %}
+
+
+  <style>
+    div.container.has-text-centered {
+      max-width: 100%;
+    }
+  </style>
+</body>
+
+</html>

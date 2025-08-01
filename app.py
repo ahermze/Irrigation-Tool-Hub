@@ -9,6 +9,7 @@ import openweather
 from backend.wiseprocess import *
 from backend.ETrprocess import *
 from backend.Kc_process import *
+from backend.wiseET import *
 
 from backend.merged_process import *
 
@@ -212,13 +213,15 @@ def upload_wise_file():
         # full_name = upload_dir + filename_
         # plot_wise_stuff(full_name)
 
-        processfile()
-        eachdepth = [f for f in os.listdir("./static") if f.startswith('plot') and f.endswith('.png')]
-        alldepth =  [f for f in os.listdir("./static") if f.startswith('tplot') and f.endswith('.png')]
-        eachdepth.sort()
-        alldepth.sort()
+        # eachdepth = [f for f in os.listdir("./static") if f.startswith('plot') and f.endswith('.png')]
+        # alldepth =  [f for f in os.listdir("./static") if f.startswith('tplot') and f.endswith('.png')]
+        # eachdepth.sort()
+        # alldepth.sort()
 
-        return render_template("/base/WISE_result.html", eachdepth=eachdepth, alldepth=alldepth)
+        # return render_template("/base/WISE_result.html", eachdepth=eachdepth, alldepth=alldepth)
+
+        wiseET_processfile()
+        return render_template("/base/wiseET.html")
 
 @app.route("/ETrupload", methods=["POST"])
 def ETrupload_function():
