@@ -32,14 +32,6 @@ def return_upload():
 def upload():
     return render_template("/base/upload.html")
 
-@app.route("/ETrupload")
-def ETrupload():
-    return render_template("/base/ETrupload.html")
-
-@app.route("/Kc_upload")
-def Kc_upload():
-    return render_template("/base/Kc_upload.html")
-
 @app.route("/profile")
 def profile():
     return render_template("/base/profile.html")
@@ -222,52 +214,6 @@ def upload_wise_file():
 
         wiseET_processfile()
         return render_template("/base/wiseET.html")
-
-@app.route("/ETrupload", methods=["POST"])
-def ETrupload_function():
-    global filename_
-    if request.method == "POST":
-        if "file" not in request.files:
-            print("No file part")
-            return redirect(request.url)
-        file = request.files["file"]
-        if file.filename == "":
-            print("No selected file")
-            return redirect(request.url)
-        if file:
-            filename_ = file.filename
-            file_ext = os.path.splitext(filename_)[1]
-            if file_ext != ".xlsx":
-                abort(400)
-            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename_))
-        
-        process_Kc()
-        processfileetr()
-        return render_template("/base/ETrresult.html")
-
-@app.route("/Kc_upload", methods=["POST"])
-def upload_Kc_file():
-    global filename_
-    if request.method == "POST":
-        if "file" not in request.files:
-            print("No file part")
-            return redirect(request.url)
-        file = request.files["file"]
-        if file.filename == "":
-            print("No selected file")
-            return redirect(request.url)
-        if file:
-            filename_ = file.filename
-            file_ext = os.path.splitext(filename_)[1]
-            if file_ext != ".xlsx":
-                abort(400)
-            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename_))
-        
-
-        return render_template("/base/Kc_result.html")
-
-
-
 
 
 if __name__ == "__main__":

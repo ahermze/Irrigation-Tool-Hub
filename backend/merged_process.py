@@ -225,7 +225,7 @@ def plots_the_retrieval(idx, tc, cc, wx, st, day_start, day_end, treatment_selec
     plt.plot(ETr_dictionary.keys(), ETr_dictionary.values(), marker='.', label="ET reference")
     plt.title(f"Evapotranspiration Reference Values (ETr)    Site: {st["site"].iloc[0]}")
     plt.xlabel('Days')
-    plt.ylabel("mm/hr")
+    plt.ylabel("mm/day")
     plt.tight_layout()    
     plt.legend()
     plt.grid(True,alpha=0.4)
@@ -234,7 +234,7 @@ def plots_the_retrieval(idx, tc, cc, wx, st, day_start, day_end, treatment_selec
     Kc_dictionary = Kc.get_Kc(day_start, day_end)
 
     plt.figure(figsize=(20, 6))  # Width of 12 inches and height of 6 inches
-    plt.plot(Kc_dictionary.keys(), Kc_dictionary.values(), label="Crop Coefficient")
+    plt.plot(Kc_dictionary.keys(), Kc_dictionary.values(), marker=".", label="Crop Coefficient")
 
     plt.title(f"Crop Coefficient Values (Kcr)    Site: {st["site"].iloc[0]}")
     plt.xlabel('Days')
@@ -264,9 +264,10 @@ def plots_the_retrieval(idx, tc, cc, wx, st, day_start, day_end, treatment_selec
     plt.figure(figsize=(20, 6))
 
     # plt.figure()
-    plt.plot(theoretical_date, theoretical_result, 'blue', label = "Theoretical")
-    plt.plot(emperical_date, emperical_result, 'r', label = "Emperical")
+    plt.plot(theoretical_date, theoretical_result, marker=".", color='blue', label = "Theoretical")
+    plt.plot(emperical_date, emperical_result, color='red', marker=".", label = "Emperical")
     plt.xlabel('Days')
+    plt.ylabel("mm/day")
     plt.title("Evapotranspiration (ET = ETr * Kcr * Ks) for " + treatment_select)
     plt.legend()
     plt.tight_layout()  
@@ -274,8 +275,8 @@ def plots_the_retrieval(idx, tc, cc, wx, st, day_start, day_end, treatment_selec
     plt.savefig("./static/merged_result.png")
 
     plt.figure(figsize=(20, 6))
-    plt.plot(days, cwsi_t2, 'blue', label = "Theoretical")
-    plt.plot(days, cwsi_e, 'r', label = "Emperical")
+    plt.plot(days, cwsi_t2, marker=".", color='blue', label = "Theoretical")
+    plt.plot(days, cwsi_e, marker=".", color='red', label = "Emperical")
     plt.xlabel('Days')
     plt.title("CWSI for " + treatment_select)
     plt.legend()
@@ -293,8 +294,8 @@ def plots_the_retrieval(idx, tc, cc, wx, st, day_start, day_end, treatment_selec
         cwsi_e_2.append(1 - thing)
 
     plt.figure(figsize=(20, 6))
-    plt.plot(days, (cwsi_t2_2), 'blue', label = "Theoretical")
-    plt.plot(days, (cwsi_e_2), 'r', label = "Emperical")
+    plt.plot(days, (cwsi_t2_2), marker=".", color='blue', label = "Theoretical")
+    plt.plot(days, (cwsi_e_2), marker=".", color='red', label = "Emperical")
     plt.xlabel('Days')
     plt.ylabel('Ks coefficients')
     plt.title("Water Stress Coefficient (Ks = 1 - CWSI)")

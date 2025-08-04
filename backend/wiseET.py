@@ -110,7 +110,7 @@ def wiseET_processfile():
 
     plt.xlabel('Days')
     plt.ylabel('Crop ET rate (mm)')
-    plt.title(f"WISE ET rate at {st["site"].iloc[0]}")
+    plt.title(f"WISE ET Rate At {st["site"].iloc[0]}, Per Plot")
     plt.tight_layout()
     plt.legend()
     # plt.show()
