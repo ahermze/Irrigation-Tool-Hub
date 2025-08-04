@@ -2,6 +2,9 @@ import requests
 import os
 from dotenv import load_dotenv, dotenv_values
 load_dotenv()
+
+# part of the map feature to select a plot and retrieve the weather from that location. Not used currently.
+
 def get_weather(latitude, longitude):
     # url = f'https://api.openweathermap.org/data/2.5/weather?lat={latitude}&lon={longitude}&units=imperial&appid='+os.getenv("weather_api_id")
     url = f'https://api.openweathermap.org/data/3.0/onecall?lat={latitude}&lon={longitude}&exclude={"alerts"}&appid={"weather_api_id"}'

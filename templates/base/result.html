@@ -13,7 +13,6 @@
       padding: 5px;
     }
 
-    /* Clearfix (clear floats) */
     .row::after {
       content: "";
       clear: both;
@@ -31,12 +30,10 @@
 
     <div class="row">
       <div>
-        <!-- <h1>CWSI coefficient for selected treatment </h1> -->
         <img src="/static/result_2pm_cwsi.png" class="center" width="auto" height="auto">
       </div>
 
       <div>
-        <!-- <h1>Regression plot</h1> -->
         <div><img src="/static/ab_plot.png" class="center" width="auto" height="auto">
         </div>
       </div>
@@ -49,9 +46,7 @@
     const currentLocation = window.location.pathname;
     const navLinks = document.querySelectorAll('.nav-link');
     navLinks.forEach(link => {
-        // Check if the link's href matches the current page URL
         if (link.getAttribute('href') === currentLocation) {
-            // Add the 'active' class to the matching link
             link.classList.add('active');
         }
     });

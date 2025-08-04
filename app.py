@@ -1,5 +1,4 @@
 from backend.func_new import *
-# from backend.wisecalc import *
 import os
 from lib2to3.pgen2.pgen import DFAState
 from flask import Flask, request, redirect, url_for, render_template, flash, Blueprint, abort
@@ -32,10 +31,6 @@ def return_upload():
 def upload():
     return render_template("/base/upload.html")
 
-@app.route("/profile")
-def profile():
-    return render_template("/base/profile.html")
-
 @app.route("/both")
 def both():
     return render_template("/base/both.html")
@@ -49,14 +44,13 @@ def merge_upload():
     return render_template("/base/merge_upload.html")
 
 
-# No longer needed :(
+# Not used :(
 @app.route("/themap")
 def themap():
     # if request.method == ["POST"]:
-
     return render_template("/base/themap.html")
 
-# Not needed :(
+# Not used :(
 @app.route("/aftermap")
 def aftermap():
     if request.method == "GET":
@@ -67,8 +61,6 @@ def aftermap():
         result = openweather.get_weather(request.cookies.get('latitude'), request.cookies.get('longitude'))
         # print(result)
         return render_template("/base/aftermap.html", weather_data=result)
-
-#///////////////////////////////////////////////////////////////////////////////////////////////////
 
 
 @app.route("/upload", methods=["POST"])
@@ -125,8 +117,6 @@ def upload_success_2nd():
         error_message = str(e)
         return render_template("/base/upload_success_2nd.html", error_message=error_message)
 
-#///////////////////////////////////////////////////////////////////////////////////////////////////
-
 
 @app.route("/merge_upload", methods=["POST"])
 def merge_upload_file():
@@ -181,8 +171,6 @@ def merge_success():
         error_message = str(e)
         return render_template("/base/merge_success.html", error_message=error_message)
 
-#///////////////////////////////////////////////////////////////////////////////////////////////////
-
 
 @app.route("/wiseupload", methods=["POST"])
 def upload_wise_file():
@@ -201,16 +189,6 @@ def upload_wise_file():
             if file_ext != ".xlsx":
                 abort(400)
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename_))
-
-        # full_name = upload_dir + filename_
-        # plot_wise_stuff(full_name)
-
-        # eachdepth = [f for f in os.listdir("./static") if f.startswith('plot') and f.endswith('.png')]
-        # alldepth =  [f for f in os.listdir("./static") if f.startswith('tplot') and f.endswith('.png')]
-        # eachdepth.sort()
-        # alldepth.sort()
-
-        # return render_template("/base/WISE_result.html", eachdepth=eachdepth, alldepth=alldepth)
 
         wiseET_processfile()
         return render_template("/base/wiseET.html")

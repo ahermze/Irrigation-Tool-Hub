@@ -13,7 +13,6 @@
       padding: 5px;
     }
 
-    /* Clearfix (clear floats) */
     .row::after {
       content: "";
       clear: both;
@@ -26,7 +25,7 @@
     }
 
     .image-container img {
-      margin: 5px; /* Add some spacing between images */
+      margin: 5px;
       min-width: 200px;
       width: 85%;
       height: auto;
@@ -44,16 +43,6 @@
           <div class="image-container" id="eachDepthContainer">
             <img src="{{ url_for('static', filename='wiseET.png') }}" class="center">
           </div>
-          
-
-
-          <!-- <div class="image-container" id="eachDepthContainer">
-            <img src="{{ url_for('static', filename='ETreference.png') }}" class="center">
-          </div>
-          <div class="image-container" id="eachDepthContainer">
-            <img src="{{ url_for('static', filename='Kc_values.png') }}" class="center">
-          </div> -->
-
 
     <a href="{{ url_for('merge_success') }}" class="btn btn-info" role="button">Back to insert values</a>
   </div>
@@ -62,16 +51,13 @@
     const currentLocation = window.location.pathname;
     const navLinks = document.querySelectorAll('.nav-link');
     navLinks.forEach(link => {
-        // Check if the link's href matches the current page URL
         if (link.getAttribute('href') === currentLocation) {
-            // Add the 'active' class to the matching link
             link.classList.add('active');
         }
     });
 
   </script>
   {% endblock %}
-
 
   <style>
     div.container.has-text-centered {

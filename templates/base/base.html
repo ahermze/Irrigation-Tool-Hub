@@ -18,8 +18,6 @@
 
     <link rel="stylesheet" href="/static/styles.css" />
 
-
-
 </head>
 
 <body>
@@ -65,21 +63,11 @@
     </section>
  
   
-  <!-- <script>
-    var activeNavItem = $('.nav-item');
-
-    activeNavItem.click(function(){
-      activeNavItem.removeClass('active');
-      $(this).addClass('active');  
-    });
-  </script> -->
   <script>
     const currentLocation = window.location.pathname;
     const navLinks = document.querySelectorAll('.nav-link');
     navLinks.forEach(link => {
-        // Check if the link's href matches the current page URL
         if (link.getAttribute('href') === currentLocation) {
-            // Add the 'active' class to the matching link
             link.classList.add('active');
         }
     });
