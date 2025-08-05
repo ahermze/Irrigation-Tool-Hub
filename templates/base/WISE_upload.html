@@ -28,13 +28,8 @@
                 <div class="form-group">
                     <input class="input is-large"  accept=".xlsx" id="fileInput" onchange="changeButton()" type="file" name="file" placeholder="Upload File Here" autofocus="">
                 </div>
-
-                <!-- <div class="form-group"> -->
-                    <!-- <input type="submit" value="Upload" , class="button is-block is-info is-large is-fullwidth"> -->
                     
-                    </div><div class="form-group">
-                        <!-- <input type="submit" value="Upload" , class="button is-block is-info is-large is-fullwidth"> -->
-                         
+                    </div><div class="form-group">                         
                         </div>
                 
                         <button id="sub" type='submit' class="btn btn-danger" disabled>Upload</button>
@@ -58,15 +53,14 @@
         const filePath = fileInput.value;
         const allowedExtensions = /(\.xlsx)$/i;
 
-        // Check if the file extension is valid
         if (!allowedExtensions.exec(filePath)) {
             alert('Please upload a file with .xlsx extension.');
-            fileInput.value = ''; // Clear the input
+            fileInput.value = '';
             theButton.disabled=true;
-            return false; // Prevent form submission
+            return false;
         }
 
-        return true; // Allow form submission
+        return true;
     }
     
 </script>

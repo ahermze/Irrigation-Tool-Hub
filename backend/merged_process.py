@@ -1,7 +1,7 @@
 ## Import functions
 import backend.ETrprocess as ETr
 import backend.Kc_process as Kc
-import backend.swd_total as swd_total
+# import backend.swd_total as swd_total
 
 # from ETr import get_ETr
 # from Kc import get_Kc
@@ -305,19 +305,15 @@ def plots_the_retrieval(idx, tc, cc, wx, st, day_start, day_end, treatment_selec
     plt.grid(True,alpha=0.4)
     plt.savefig("./static/Ks_graph.png")
 
+    # ETt = {}
+    # ETe = {}
 
-    ETt = {}
-    ETe = {}
+    # for i,day in enumerate(theoretical_date):
+    #     ETt[day] = theoretical_result[i]
+    # for i,day in enumerate(emperical_date):
+    #     ETe[day] = emperical_result[i]
 
-    for i,day in enumerate(theoretical_date):
-        ETt[day] = theoretical_result[i]
-    for i,day in enumerate(emperical_date):
-        ETe[day] = emperical_result[i]
-
-    swd_total.get_swd(ETt, ETe)
-
-
-
+    # swd_total.get_swd(ETt, ETe)
 
 def plot_the_buttons(file_name, day_start, day_end, treatment, start_hour, end_hour, select_hour): 
     tc, cc, wx, st, idx = load_filename(file_name)

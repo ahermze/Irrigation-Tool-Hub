@@ -44,13 +44,13 @@ def merge_upload():
     return render_template("/base/merge_upload.html")
 
 
-# Not used :(
+# Not used
 @app.route("/themap")
 def themap():
     # if request.method == ["POST"]:
     return render_template("/base/themap.html")
 
-# Not used :(
+# Not used
 @app.route("/aftermap")
 def aftermap():
     if request.method == "GET":
@@ -137,6 +137,7 @@ def merge_upload_file():
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename_))
 
         return render_template("/base/merge_success.html")
+
 
 @app.route("/merge_success", methods=["GET", "POST"])
 def merge_success():
