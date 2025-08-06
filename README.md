@@ -1,6 +1,8 @@
 # Irrigation Tool Hub Application
-This repository contains a Python implementation of the Crop Water Stress Index (CWSI) calculation along with the WISE tool, deployed on Azure, using Flask. The WISE calculation is from the following paper:
-[Andales et al 2014 AASM mobileIWM.pdf](https://github.com/user-attachments/files/21639830/Andales.et.al.2014.AASM.mobileIWM.pdf) (Equation 2, page 60)
+This repository contains a Python implementation of the Crop Water Stress Index (CWSI) calculation along with the WISE calculation, deployed on Azure, using Flask. The WISE calculation is from the following paper:
+[Andales et al 2014 AASM mobileIWM.pdf](https://github.com/user-attachments/files/21639830/Andales.et.al.2014.AASM.mobileIWM.pdf) (Equation 2, page 60).
+
+Functionality is implemented for CWSI value calculation, WISE based ET (Evapotranspiration) calculation, and CWSI based ET calculation.
 
 Follow the instructions below to set up using Microsoft Azure.
 
@@ -88,8 +90,4 @@ Now, go to “Overview” on the side bar in Azure, and click the link under “
 
 This links to the website, which will automatically be updated when you commit to your repository
 
-![image](https://github.com/user-attachments/assets/75601f0d-092b-4745-b07b-91909b3f1144)
-
-
-
-
+<img width="1855" height="725" alt="image" src="https://github.com/user-attachments/assets/abc5a154-0a1f-4733-82d8-57e27acfb8c0" />
