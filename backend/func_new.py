@@ -1,3 +1,5 @@
+# Main CWSI calculation function
+
 ## Import functions
 import backend.asce as asce
 import backend.cwsi as cwsi

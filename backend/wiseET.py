@@ -93,6 +93,8 @@ def wiseET_processfile():
                 dictionary[day] = output
 
             if day != days_available[0]:
+                if dictionary[day] < 0:
+                    dictionary[day] = 0
                 final = dictionary[day] - dictionary[day-1] + pre_dictionary[day] + irr_dictionary[day]
                 new_thing[day] = final
                 

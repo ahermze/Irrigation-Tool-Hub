@@ -1,3 +1,4 @@
+# Used for CWSI calculation
 
 from numba import jit_module
 from numpy import abs, arccos, arcsin, cos, empty, exp, isfinite, pi, radians, sin, sqrt, tan, where

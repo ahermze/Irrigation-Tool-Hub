@@ -1,3 +1,5 @@
+# For CWSI calculation
+
 from numba import jit_module
 from numpy import abs, diag, ones, sort, where
 from numpy.linalg import inv
