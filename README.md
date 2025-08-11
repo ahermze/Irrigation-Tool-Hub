@@ -4,6 +4,8 @@ This repository contains a Python implementation of the Crop Water Stress Index 
 
 Functionality is implemented for CWSI value calculation, WISE based ET (Evapotranspiration) calculation, and CWSI based ET calculation.
 
+The generall idea is that the WISE calculation is used to find the soil water deficit for the current day. Part of that calculation involves the crop stress coefficient, which is what we replace with the CWSI value.
+
 Follow the instructions below to set up using Microsoft Azure.
 
 Requirements:
